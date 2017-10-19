@@ -8,7 +8,7 @@ if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
 
-page('/article/:id', PreLoading, loadArticle, loadInventario, (ctx, next) => {
+page('/article/:id', PreLoading, loadArticle, loadInventario, loadModelo, loadMarca, (ctx, next) => {
 	let html = template(ctx.articulo)
   let content = document.querySelector('#content')
   content.innerHTML = html
@@ -46,4 +46,38 @@ async function loadInventario (ctx, next) {
 	} catch (err) {
 		console.log(err)
 	}
+}
+
+async function loadModelo (ctx, next) {
+	try {
+    let modelos = await db.ref('modelos').once('value').then(snapshot => {
+      return snapshot.val()
+    })
+
+    let modelo = modelos.find(item => {
+       return item.id == ctx.articulo.idModelo
+    })
+    
+    ctx.articulo.modelo = modelo
+    next()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function loadMarca (ctx, next) {
+	try {
+    let marcas = await db.ref('marcas').once('value').then(snapshot => {
+      return snapshot.val()
+    })
+
+    let marca = marcas.find(item => {
+       return item.id == ctx.articulo.modelo.idMarca
+    })
+    
+    ctx.articulo.modelo.marca = marca
+    next()
+  } catch (err) {
+    console.log(err)
+  }
 }
