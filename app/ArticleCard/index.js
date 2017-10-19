@@ -15,7 +15,7 @@ let card = article => {
 		      <span class="right">${article.precio}$</span>
 		    </div>
 		    <div class="card-action">
-		      <a href="#">Ver Detalle</a>
+		      <a href="/article/${article.id}">Ver Detalle</a>
 		    </div>  
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">${article.descripcion}<i class="material-icons right">close</i></span>
