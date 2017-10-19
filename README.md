@@ -17,3 +17,8 @@
 	3. *npm install babel-cli -g*
 ### > Project's packages instalation
     * yarn install
+
+### > Start project with command start
+    * yarn start
+
+### > got to url: localhost:8080 
