@@ -4,6 +4,7 @@ const addShoppingCar = (articulo, cantidad = 0) => {
 	if (document.Car.articles.length <= 0) {
 		articulo.cantidad = cantidad
 		document.Car.addToCar(articulo)
+		Materialize.toast('Artículo agregado al carrito!', 3000, 'rounded')
 		return
 	}
 
@@ -17,6 +18,8 @@ const addShoppingCar = (articulo, cantidad = 0) => {
 		articulo.cantidad = cantidad
 		document.Car.addToCar(articulo)
 	}
+
+	Materialize.toast('Artículo agregado al carrito!', 3000, 'rounded')
 }
 
 export default addShoppingCar
