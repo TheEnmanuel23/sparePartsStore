@@ -1,33 +1,40 @@
-const template = (data) => {
-	return `
-		<table>
-        <thead>
-          <tr>
-              <th>Name</th>
-              <th>Item Name</th>
-              <th>Item Price</th>
-          </tr>
-        </thead>
+const template = () => {
+  if (document.Car.articles.length <= 0) {
+    return '<h4 class="red-text center">El carrito está vacío</<h4>'
+  }
 
-        <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
-        </tbody>
-      </table>
-	`
+  let articulos = document.Car.articles
+  let rows = ''
+
+	articulos.map(item => {
+    rows +=  `
+     <tr>
+      <td>${item.id}</td>
+      <td>${item.descripcion}</td>
+      <td>${item.inventario.precio_venta}</td>
+      <td>${item.cantidad}</td>
+      <td>${item.cantidad * item.inventario.precio_venta}</td>
+    </tr>
+  `
+  })
+
+  let table = `
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Articulo</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${rows}
+    </tbody>
+  </table>`
+
+  return table
 }
 
 export default template
