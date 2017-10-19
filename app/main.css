@@ -24,8 +24,7 @@ main, footer {
 	padding: 10px 0;
 	box-shadow: 0 0 5px gray;
 }
-/*
-#menu-top ul li a {
-	color: black;
+
+.icon-shopping-car {
+	font-size: 20px;
 }
-*/

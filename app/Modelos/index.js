@@ -8,7 +8,7 @@ if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
 
-page('/marcas/:id', PreLoading, loadModelos, loadArticulos, (ctx, next) => {
+page('/marcas/:id', PreLoading, loadModelos, loadArticulos, loadInventario, (ctx, next) => {
   let html = template(ctx.modelos, ctx.articulos)
   let content = document.querySelector('#content')
   content.innerHTML = html
@@ -62,3 +62,29 @@ async function loadArticulos (ctx, next) {
   }
 }
 
+async function loadInventario (ctx, next) {
+  try {
+     let inventario = await db.ref('inventario').orderByChild('nuevo').equalTo(true).once('value').then(snapshot => {
+      return snapshot.val()
+    })
+
+    let articulosPorInventario = []
+
+    inventario.find(inv => {
+      let articulo = ctx.articulos.find(art => {
+        return art.id == inv.idArticulo
+      })
+
+      if (articulo) {
+        articulo.precio = inv.precio_venta
+        articulo.nuevo = inv.nuevo
+        articulosPorInventario.push(articulo)
+      }
+    })
+
+    ctx.articulos = articulosPorInventario
+    next()
+  } catch (err) {
+    console.log(err)
+  }
+}
