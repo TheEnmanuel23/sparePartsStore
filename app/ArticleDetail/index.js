@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import config from '../../config'
 import template from './template'
 import PreLoading from '../Loader'
+import addShoppingCar from './addShoppingCar'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -12,6 +13,12 @@ page('/article/:id', PreLoading, loadArticle, loadInventario, loadModelo, loadMa
 	let html = template(ctx.articulo)
   let content = document.querySelector('#content')
   content.innerHTML = html
+
+  let btnAddToCar = document.querySelector('#addToCard')
+  let cantidad = document.querySelector('#cantArticle')
+	btnAddToCar.addEventListener('click', function (e) {
+		addShoppingCar(ctx.articulo, cantidad.value)
+	})
 })
 
 async function loadArticle (ctx, next) {
