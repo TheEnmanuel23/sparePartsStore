@@ -50,7 +50,16 @@ const template = article => {
           </div>
         </div>
         <div class="card-action">
-          <a href="#">This is a link</a>
+          <div class="row">
+            <div class="col s12 m7">
+              <p class="range-field">
+                <input type="range" id="cantArticle" min="0" max=${article.inventario.stock} />
+              </p>
+            </div>
+            <div class="col s12 m5">
+              <a id="addToCard" class="waves-effect orange darken-2 btn"><i class="material-icons right">add_shopping_cart</i>Agregar</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
