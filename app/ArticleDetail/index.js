@@ -8,7 +8,7 @@ if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
 
-page('/article/:id', PreLoading, loadArticle, (ctx, next) => {
+page('/article/:id', PreLoading, loadArticle, loadInventario, (ctx, next) => {
 	let html = template(ctx.articulo)
   let content = document.querySelector('#content')
   content.innerHTML = html
@@ -25,6 +25,23 @@ async function loadArticle (ctx, next) {
 		})
 
 		ctx.articulo = articulo
+		next()	
+	} catch (err) {
+		console.log(err)
+	}
+}
+
+async function loadInventario (ctx, next) {
+	try {
+		let inventario = await db.ref('inventario').once('value').then(snapshot => {
+	    return snapshot.val()
+	  })
+
+		let articuloInventario = inventario.find(inv => {
+			return inv.idArticulo == ctx.params.id
+		})
+
+		ctx.articulo.inventario = articuloInventario
 		next()	
 	} catch (err) {
 		console.log(err)
