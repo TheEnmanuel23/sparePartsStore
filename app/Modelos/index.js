@@ -13,7 +13,6 @@ page('/marcas/:id', PreLoading, loadModelos, loadArticulos, loadInventario, (ctx
   let content = document.querySelector('#content')
   content.innerHTML = html
 
-  $('.collapsible').collapsible('open', 0)
   $('.collapsible').collapsible()
 })
 
