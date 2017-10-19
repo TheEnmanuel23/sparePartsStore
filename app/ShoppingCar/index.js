@@ -10,8 +10,10 @@ page('/shoppingcar',  () => {
   let vaciarCarrito = document.querySelector('#vaciar-carrito')
 
   vaciarCarrito.addEventListener('click', () => {
-  	document.Car.articles = []
-  	window.location.reload()
+  	if (confirm('¿Está seguro de vaciar el carrito?') ==  true) {
+  		document.Car.articles = []
+  		window.location.reload()
+  	}  	
   })
 })
 
