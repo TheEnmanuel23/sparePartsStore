@@ -5,21 +5,24 @@ const template = () => {
 
   let articulos = document.Car.articles
   let rows = ''
+  let total = 0
 
 	articulos.map(item => {
+    let totalRow = item.cantidad * item.inventario.precio_venta
     rows +=  `
-     <tr>
+     <tr id=${item.id}>
       <td>${item.id}</td>
       <td>${item.descripcion}</td>
-      <td>${item.inventario.precio_venta}</td>
+      <td>${item.inventario.precio_venta}$</td>
       <td>${item.cantidad}</td>
-      <td>${item.cantidad * item.inventario.precio_venta}</td>
+      <td>${totalRow}$</td>
     </tr>
-  `
+    `
+    total += totalRow
   })
 
   let table = `
-  <table>
+  <table class="striped">
     <thead>
       <tr>
         <th>Id</th>
@@ -34,7 +37,26 @@ const template = () => {
     </tbody>
   </table>`
 
-  return table
+  let card = `
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"><i class="material-icons">shopping_basket</i> Lista de compras</span>
+          ${table}
+        </div>
+        <div class="card-action">
+          <a class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_basket</i>Comprar</a>
+          <a id="vaciar-carrito" class="waves-effect red accent-3 btn"><i class="material-icons right">remove_shopping_cart</i>Vaciar</a>          
+          <div class="chip right">
+            Total: ${total}$
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`
+
+  return card
 }
 
 export default template
