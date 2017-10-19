@@ -1,29 +1,22 @@
 import ArticleCard from '../ArticleCard'
 
-function loadArticulos (content) {
+const template = (modelos, articulos) => {
   let items = ''
-
-  content.map(item => {
-    items += ArticleCard(item)
-  })
-
-  let html = `
-   <div class="row">
-      ${items}
-    </div>`
-  
-  return html
-}
-
-const template = (data, articulos) => {
-  let items = ''
-  data.map(item => {
-    items += `
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>${item.nombre}</div>
-      <div class="collapsible-body"><span>${loadArticulos(articulos)}</span></div>
-    </li>`
-        
+  modelos.map(mod => {
+    articulos.find(art => {
+      if (art.idModelo == mod.id) {
+        items += `
+          <li>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>${mod.nombre}</div>
+            <div class="collapsible-body">
+              <div class="row">
+                ${ArticleCard(art)}
+              </div>
+            <span>
+            </span></div>
+          </li>`
+      }
+    })        
   })
 
   let html = `
