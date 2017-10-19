@@ -8,13 +8,9 @@ const template = content => {
   })
 
   let html = `
-      <div class="col s12 m10">
-        <div class="card-panel">
-          <div class="row">
-            ${items}
-          </div>
-        </div>
-      </div>
+    <div class="row">
+      ${items}
+    </div>
     `
 
   return html

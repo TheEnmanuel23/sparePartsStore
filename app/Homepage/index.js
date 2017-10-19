@@ -1,26 +1,26 @@
 import page from 'page'
 import firebase from 'firebase'
 import config from '../../config'
-// import loadMarcas from '../marcas'
+import loadMarcas from '../Marcas'
 import template from './template'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
 
-page('/', preLoading, loadData, (ctx, next) => {
-  // let menu = document.querySelector('#menu')
+page('/', preLoading, loadMarcas, loadData, (ctx, next) => {
+  let menu = document.querySelector('#menu')
   let content = document.querySelector('#content')
 
-  // menu.innerHTML = ctx.marcas
   let html = template(ctx.data)
+  menu.innerHTML = ctx.marcas
   content.innerHTML = html
 })
 
 function preLoading (ctx, next) {
   let loading = `
   <div class="preloader-wrapper big active">
-    <div class="spinner-layer spinner-blue-only">
+    <div class="spinner-layer spinner-red-only">
       <div class="circle-clipper left">
         <div class="circle"></div>
       </div><div class="gap-patch">

@@ -1,25 +1,22 @@
-import page from 'page'
+import firebase from 'firebase'
+import config from '../../config'
+import template from './template'
 
-page('/marcas', () => {
-	let html = `
-	 <ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>`
- 
-  let content = document.querySelector('#content')
-  content.innerHTML = html
-  
-  $('.collapsible').collapsible('open', 0)
-  $('.collapsible').collapsible()
-})
+if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
+
+const db = firebase.database()
+
+const loadMarcas = async (ctx, next) => {
+  try {
+    await db.ref('marcas').once('value').then(snapshot => {
+      let marcas = snapshot.val()
+      let html = template(marcas)
+      ctx.marcas = html
+      next()
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export default  loadMarcas

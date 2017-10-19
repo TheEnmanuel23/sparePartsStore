@@ -1,2 +1,31 @@
 @import './../node_modules/material-icons/css/material-icons.min.css';
 @import './../node_modules/materialize-css/dist/css/materialize.min.css';
+
+main, footer {
+   padding-left: 230px;
+}
+
+.preloader-wrapper {
+	position: absolute;
+	top :0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+@media only screen and (max-width : 992px) {
+   main, footer {
+     padding-left: 0;
+   }
+}
+
+.list-marcas {
+	padding: 10px 0;
+	box-shadow: 0 0 5px gray;
+}
+/*
+#menu-top ul li a {
+	color: black;
+}
+*/
