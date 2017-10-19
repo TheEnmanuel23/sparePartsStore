@@ -7,18 +7,15 @@ const addShoppingCar = (articulo, cantidad = 0) => {
 		return
 	}
 
-	for (let i = 0; i < document.Car.articles.length;  i++) {
-		let item = document.Car.articles[i]
+	let art = document.Car.articles.find(item => {
+		return item.id == articulo.id
+	})
 
-		if (item.id == articulo.id) {
-			document.Car.articles[i].cantidad += cantidad
-			break
-		}
-		else {
-			articulo.cantidad = cantidad
-			document.Car.addToCar(articulo)
-			break
-		}
+	if (art) {
+		art.cantidad = parseInt(art.cantidad) + parseInt(cantidad)
+	} else {
+		articulo.cantidad = cantidad
+		document.Car.addToCar(articulo)
 	}
 }
 
