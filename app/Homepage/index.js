@@ -8,41 +8,51 @@ if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
 
-page('/', PreLoading, loadData, (ctx, next) => {
+page('/', PreLoading, loadInventario, loadArticulos, (ctx, next) => {
   let content = document.querySelector('#content')
 
-  let html = template(ctx.data)
+  let html = template(ctx.articulos)
   content.innerHTML = html
 })
 
-async function loadData (ctx, next) {
+async function loadInventario (ctx, next) {
   try {
     let inventario = await db.ref('inventario').orderByChild('nuevo').equalTo(true).once('value').then(snapshot => {
       return snapshot.val()
     })
 
+    ctx.inventario = inventario
+    next()
+
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+async function loadArticulos (ctx, next) {
+  try {
     let articulos = []
+    let allArticles = await db.ref('articulos').once('value').then(snapshot => {
+      return snapshot.val()
+    })
 
-    for (let item = 0; item < inventario.length; item ++) {
-      let idArticulo = inventario[item].idArticulo
+    for (let invIndex = 0; invIndex < ctx.inventario.length; invIndex ++) {
+      let idArticulo = ctx.inventario[invIndex].idArticulo
 
-      await db.ref('articulos').orderByChild('id').equalTo(idArticulo).once('value').then(arts => {
-        let arrayData = arts.val()
-
-        for (let i = 0; i < arrayData.length; i++) {
-          if (arrayData[i]) {
-            let articuloItem = arrayData[i]
-            articuloItem.nuevo = inventario[item].nuevo
-            articuloItem.precio = inventario[item].precio_venta
+      for (let i = 0; i < allArticles.length; i++) {
+        let articuloItem = allArticles[i]
+        if (articuloItem) {
+          if (articuloItem.id == idArticulo) {
+            articuloItem.nuevo = ctx.inventario[invIndex].nuevo
+            articuloItem.precio = ctx.inventario[invIndex].precio_venta
             articulos.push(articuloItem)
           }
         }
-      }) 
+      }
     }
 
-    ctx.data = articulos
+    ctx.articulos = articulos
     next()
-
   } catch (err) {
     console.error(err)
   }
