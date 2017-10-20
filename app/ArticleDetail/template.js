@@ -20,7 +20,7 @@ const modeloCard = modelo => {
   <div class="col s12 m6">
     <div class="card">
       <div class="card-image image-marca">
-        <img clas="center" src="http://pngimg.com/uploads/samsung_logo/samsung_logo_PNG9.png">
+        <img clas="center" src=${modelo.marca.img}>
       </div>
       <div class="card-content detail-marca">
         <p>Marca: ${modelo.marca.descripcion}</p>
