@@ -32,9 +32,12 @@ async function loadData (ctx, next) {
         for (let i = 0; i < arrayData.length; i++) {
           if (arrayData[i]) {
             let articuloItem = arrayData[i]
-            articuloItem.nuevo = inventario[item].nuevo
-            articuloItem.precio = inventario[item].precio_venta
-            articulos.push(articuloItem)
+            
+            if (articuloItem.descripcion.toLowerCase().includes(ctx.params.value) || articuloItem.detalle.toLowerCase().includes(ctx.value)) {
+            	articuloItem.nuevo = inventario[item].nuevo
+	            articuloItem.precio = inventario[item].precio_venta
+	            articulos.push(articuloItem)
+            }
           }
         }
       }) 

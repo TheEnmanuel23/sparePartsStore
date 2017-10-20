@@ -30,6 +30,12 @@ menuTop.innerHTML = menu
 let inputSearch = document.querySelector('#input-search-article')
 inputSearch.addEventListener('keypress', (e) => {
 	if (e.keyCode == 13) {
-		page.redirect(`/search/${e.target.value}`);
+    let value = e.target.value
+    
+    if (!value) {
+      return alert('El campo de búsqueda no debe estar vacío.')
+    }
+
+		page.redirect(`/search/${value}`);
 	}
 })
