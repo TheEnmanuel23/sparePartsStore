@@ -6,7 +6,7 @@ let card = article => {
 		      <img class="activator" src=${article.img}>     
 		    </div>
 		    <div class="card-content">
-		      <span class="card-title activator grey-text text-darken-4">${article.descripcion}<i class="material-icons right">more_vert</i></span>
+		      <span class="card-title activator grey-text text-darken-4">${splitDescription(article.descripcion)}<i class="material-icons right">more_vert</i></span>
 		      ${
 		        article.nuevo ? `
 		          <div class="chip">Nuevo</div>`
@@ -23,5 +23,16 @@ let card = article => {
 		    </div>
 		  </div>
 		</div>`
-}	
+}
+
+function splitDescription (descripcion) {
+  let newdescripcion = descripcion
+
+  if (descripcion.length > 23) {
+    newdescripcion = descripcion.substr(0, 23) + ' ...'
+  }
+
+  return newdescripcion
+}
+
 export default card
