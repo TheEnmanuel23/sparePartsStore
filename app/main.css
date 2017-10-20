@@ -37,3 +37,7 @@ main, footer {
 	padding-top: 0;
     padding-left: 10px;
 }
+
+.container-browser-article, .search-article, .input-search-article {
+	margin-bottom: 0 !important;
+}
