@@ -8,6 +8,7 @@ import './Modelos'
 import './ArticleDetail'
 import './ShoppingCar'
 import Car from './ShoppingCar/Car'
+import './SearchArticle'
 import './main.css'
 
 document.Car = new Car()
