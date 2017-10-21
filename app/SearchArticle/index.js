@@ -44,7 +44,9 @@ async function loadArticulos (ctx, next) {
 
         if (articuloItem) {
           if (articuloItem.id == idArticulo) {
-            if (articuloItem.descripcion.toLowerCase().includes(ctx.params.value) || articuloItem.detalle.toLowerCase().includes(ctx.params.value)) {
+            let value = ctx.params.value.toLowerCase()
+            
+            if (articuloItem.descripcion.toLowerCase().includes(value) || articuloItem.detalle.toLowerCase().includes(value)) {
               articuloItem.nuevo = ctx.inventario[invIndex].nuevo
               articuloItem.precio = ctx.inventario[invIndex].precio_venta
               articulos.push(articuloItem)
