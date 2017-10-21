@@ -8,7 +8,7 @@ const inventarioCard = inventario => {
           ${
             inventario.nuevo ? `
               <div class="chip">Nuevo</div>`
-            : null
+            : ''
           }          
         </div>
       </div>
