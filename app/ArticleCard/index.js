@@ -10,7 +10,7 @@ let card = article => {
 		      ${
 		        article.nuevo ? `
 		          <div class="chip">Nuevo</div>`
-		        : null
+		        : ''
 		      }
 		      <span class="right">${article.precio}$</span>
 		    </div>
