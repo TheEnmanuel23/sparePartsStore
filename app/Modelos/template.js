@@ -2,21 +2,24 @@ import ArticleCard from '../ArticleCard'
 
 const template = (modelos, articulos) => {
   let items = ''
+  
   modelos.map(mod => {
-    articulos.find(art => {
-      if (art.idModelo == mod.id) {
-        items += `
-          <li>
+    let articulosPorModelo = articulos.filter((item) => item.idModelo == mod.id)
+
+    let articulosHTML = ''
+    articulosPorModelo.map(item => articulosHTML += ArticleCard(item))
+
+    let modelTemplate = `<li>
             <div class="collapsible-header"><i class="material-icons">filter_drama</i>${mod.nombre}</div>
             <div class="collapsible-body">
               <div class="row">
-                ${ArticleCard(art)}
+                ${articulosHTML}
               </div>
             <span>
             </span></div>
           </li>`
-      }
-    })        
+
+    items += modelTemplate
   })
 
   let html = `
