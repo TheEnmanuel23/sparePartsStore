@@ -36,11 +36,9 @@ async function loadArticulos (ctx, next) {
       return snapshot.val()
     })
 
-    console.log('>>>>>>>>>>><', ctx.inventario)
-
     for (let invIndex = 0; invIndex < ctx.inventario.length; invIndex ++) {
       let idArticulo = ctx.inventario[invIndex].idArticulo
-      debugger;
+      
       for (let i = 0; i < allArticles.length; i++) {
         let articuloItem = allArticles[i]
         if (articuloItem) {

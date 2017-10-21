@@ -17,7 +17,7 @@ page('/search/:value', PreLoading, loadInventario, loadArticulos, (ctx, next) =>
 
 async function loadInventario (ctx, next) {
   try {
-    let inventario = await db.ref('inventario').orderByChild('nuevo').equalTo(true).once('value').then(snapshot => {
+    let inventario = await db.ref('inventario').once('value').then(snapshot => {
       return snapshot.val()
     })
 
