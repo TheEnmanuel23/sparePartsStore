@@ -9,11 +9,13 @@ page('/shoppingcar',  () => {
 
   let vaciarCarrito = document.querySelector('#vaciar-carrito')
 
-  vaciarCarrito.addEventListener('click', () => {
-  	if (confirm('¿Está seguro de vaciar el carrito?') ==  true) {
-  		document.Car.articles = []
-  		page.redirect('/shoppingcar')
-  	}  	
-  })
+  if (vaciarCarrito) {
+    vaciarCarrito.addEventListener('click', () => {
+    	if (confirm('¿Está seguro de vaciar el carrito?') ==  true) {
+    		document.Car.articles = []
+    		page.redirect('/shoppingcar')
+    	}  	
+    })
+  }
 })
 
