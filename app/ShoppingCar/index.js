@@ -12,7 +12,7 @@ page('/shoppingcar',  () => {
   vaciarCarrito.addEventListener('click', () => {
   	if (confirm('¿Está seguro de vaciar el carrito?') ==  true) {
   		document.Car.articles = []
-  		window.location.reload()
+  		page.redirect('/shoppingcar')
   	}  	
   })
 })
