@@ -2,14 +2,7 @@
 @import './../node_modules/materialize-css/dist/css/materialize.min.css';
 
 .principal-menu {
-	position: fixed;
-	z-index: 100;
 	background-color: #304155;
-}
-
-main, footer {
-   padding-left: 230px;
-   padding-top: 80px;
 }
 
 .preloader-wrapper {
@@ -19,12 +12,6 @@ main, footer {
 	right: 0;
 	bottom: 0;
 	margin: auto;
-}
-
-@media only screen and (max-width : 992px) {
-   main, footer {
-     padding-left: 0;
-   }
 }
 
 .list-marcas {
@@ -47,7 +34,6 @@ main, footer {
 
 .col .card .detail-marca {
 	padding-top: 0;
-    padding-left: 10px;
 }
 
 .container-browser-article, .search-article, .input-search-article {

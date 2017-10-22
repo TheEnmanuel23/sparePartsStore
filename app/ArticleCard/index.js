@@ -1,6 +1,6 @@
 let card = article => {
 	return `      
-		<div class="col s12 m2 l4">
+		<div class="col s12 m2 l3">
 		  <div class="card">
 		    <div class="card-image">
 		      <img class="activator" src=${article.img}>     
