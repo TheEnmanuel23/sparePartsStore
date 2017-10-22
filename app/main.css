@@ -24,6 +24,14 @@
 	color: white;
 }
 
+.marca-item {
+	background-color: #304155 !important;
+}
+
+.marca-item a {
+	color: white;
+}
+
 .icon-shopping-car {
 	font-size: 15px;
 }

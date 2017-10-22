@@ -2,7 +2,7 @@ const template = data => {
 	let items = ''
 
 	data.map(item => {
-		items += `<li class="collection-item"><a href="/marcas/${item.id}">${item.descripcion}</a></li>`
+		items += `<li class="collection-item marca-item"><a href="/marcas/${item.id}">${item.descripcion}</a></li>`
 	})
 
 	let html = `
