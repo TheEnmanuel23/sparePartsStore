@@ -47,3 +47,26 @@
 .container-browser-article, .search-article, .input-search-article {
 	margin-bottom: 0 !important;
 }
+
+.container-logo {
+	margin: 0;
+	padding: 0;
+}
+
+.container-logo .logo {
+	height: 150px;
+	width: 300px;
+}
+
+.info-row, .card-info {
+	margin: 0;
+	padding: 0;
+}
+
+.card-info {
+	box-shadow: none;
+}
+
+.card-info > div {
+	margin: 0;
+}

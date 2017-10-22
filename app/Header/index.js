@@ -1,4 +1,23 @@
 import page from 'page'
+import logo from './logo.jpg'
+
+const info = `
+    <div class="row info-row">
+      <div class="col s12">
+        <div class="card-panel card-info">
+          <div class="row">
+            <div class="col s12 m8">
+              <figure class="container-logo">
+                <a href="/"><img class="logo" src=${logo} /></a>                
+              </figure>
+            </div>
+            <div class="col s12 m4">
+
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>`
 
 const menu = `
     <ul class="hide-on-med-and-down">
@@ -25,7 +44,10 @@ const menu = `
 </ul>
 `
 let menuTop = document.querySelector('#menu-top')
+let informacionContainer = document.querySelector('#informacion')
+
 menuTop.innerHTML = menu
+informacionContainer.innerHTML = info
 
 let inputSearch = document.querySelector('#input-search-article')
 inputSearch.addEventListener('keypress', (e) => {
