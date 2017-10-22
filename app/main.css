@@ -70,3 +70,15 @@
 .card-info > div {
 	margin: 0;
 }
+
+.datos-contacto, .row-email, .row-nums, .row-direccion {
+	margin: 0;
+}
+
+.dato, .dato-icon {
+	color: #304155;
+}
+
+.dato-icon {
+	font-size: 18px;
+}

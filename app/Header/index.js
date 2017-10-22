@@ -12,7 +12,24 @@ const info = `
               </figure>
             </div>
             <div class="col s12 m4">
-
+              <div class="row account-section">              
+                <div class="right-align">
+                  Bienvenido, <a href="#">Entrar</a> <i class="material-icons">perm_identity</i>
+                </div>
+              </div>
+              <div class="row datos-contacto">
+                <div class="row row-email">
+                  <i class="dato-icon material-icons">email</i> <span class="dato">info@repuestosayerdis.com</span> 
+                </div>
+                <div class="row row-nums">
+                  <i class="dato-icon material-icons">phone</i> <span class="dato"><strong>Tel:</strong> 2222-2222</span>
+                  </br>
+                  <i class="dato-icon material-icons">phone_android</i> <span class="dato"><strong>Mob:</strong> (505) + 87654321</span>
+                </div>
+                <div class="row row-direccion">
+                  <i class="dato-icon material-icons">home</i> <span class="dato"><strong>Tienda física:</strong> Diriamba, Carazo Nicaragua</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
