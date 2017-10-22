@@ -1,5 +1,5 @@
 import page from 'page'
-import logo from './logo.jpg'
+import logo from '../logo.jpg'
 
 const info = `
     <div class="row info-row">

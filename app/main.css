@@ -5,6 +5,10 @@
 	background-color: #304155;
 }
 
+main {
+	min-height: 400px;
+}
+
 .preloader-wrapper {
 	position: absolute;
 	top :0;
@@ -81,4 +85,12 @@
 
 .dato-icon {
 	font-size: 18px;
+}
+
+footer {
+	background-color: #304155 !important;	
+}
+
+footer .row {
+	font-style: normal !important;
 }

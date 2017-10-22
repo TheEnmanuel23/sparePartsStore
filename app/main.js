@@ -1,6 +1,7 @@
 import page from 'page'
 
 import './Header'
+import './Footer'
 import loadMarcas from './Marcas'
 loadMarcas()
 import './Homepage'
