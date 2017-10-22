@@ -4,6 +4,7 @@
 .principal-menu {
 	position: fixed;
 	z-index: 100;
+	background-color: #304155;
 }
 
 main, footer {
@@ -28,7 +29,12 @@ main, footer {
 
 .list-marcas {
 	padding: 10px 0;
-	box-shadow: 0 0 5px gray;
+    box-shadow: 0 0 5px rgba(3, 35, 58, 0.8);	
+    background-color: #318fcf !important;
+}
+
+.list-marcas h5 {
+	color: white;
 }
 
 .icon-shopping-car {
