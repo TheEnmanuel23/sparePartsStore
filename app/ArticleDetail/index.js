@@ -3,7 +3,7 @@ import firebase from 'firebase'
 import config from '../../config'
 import template from './template'
 import PreLoading from '../Loader'
-import addShoppingCar from './addShoppingCar'
+import addShoppingCar from '../ShoppingCar/addShoppingCar'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 

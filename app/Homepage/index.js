@@ -47,6 +47,7 @@ async function loadArticulos (ctx, next) {
           if (articuloItem.id == idArticulo && articuloItem.tipo.id == 1) {
             articuloItem.nuevo = ctx.inventario[invIndex].nuevo
             articuloItem.precio = ctx.inventario[invIndex].precio_venta
+            articuloItem.inventario = ctx.inventario[invIndex]
             articulos.push(articuloItem)
           }
         }
