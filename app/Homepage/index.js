@@ -42,7 +42,7 @@ async function loadArticulos (ctx, next) {
       for (let i = 0; i < allArticles.length; i++) {
         let articuloItem = allArticles[i]
         if (articuloItem) {
-          if (articuloItem.id == idArticulo) {
+          if (articuloItem.id == idArticulo && articuloItem.tipo.id == 1) {
             articuloItem.nuevo = ctx.inventario[invIndex].nuevo
             articuloItem.precio = ctx.inventario[invIndex].precio_venta
             articulos.push(articuloItem)

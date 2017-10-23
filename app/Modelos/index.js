@@ -46,7 +46,7 @@ async function loadArticulos (ctx, next) {
 
     articulos.find(art => {
       let modelo = ctx.modelos.find(mod => {
-        return mod.id == art.idModelo
+        return mod.id == art.idModelo && art.tipo.id == 1
       })
       
       if(modelo) {

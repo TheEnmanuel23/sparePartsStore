@@ -20,6 +20,7 @@ let card = article => {
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">${article.descripcion}<i class="material-icons right">close</i></span>
 		      <p>${article.detalle}</p>
+		      <p><strong>Tipo:</strong> ${article.tipo.descripcion}</p>
 		    </div>
 		  </div>
 		</div>`
