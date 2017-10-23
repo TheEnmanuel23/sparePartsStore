@@ -27,7 +27,7 @@ const info = `
                   <i class="dato-icon material-icons">phone_android</i> <span class="dato"><strong>Mob:</strong> (505) + 87654321</span>
                 </div>
                 <div class="row row-direccion">
-                  <i class="dato-icon material-icons">home</i> <span class="dato"><strong>Tienda física:</strong> Diriamba, Carazo Nicaragua</span>
+                  <i class="dato-icon material-icons">home</i> <span class="dato"><strong>Tienda física:</strong> Jinotepe, Carazo Nicaragua</span>
                 </div>
               </div>
             </div>
