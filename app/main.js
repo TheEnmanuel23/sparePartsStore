@@ -11,6 +11,7 @@ import './ShoppingCar'
 import Car from './ShoppingCar/Car'
 import './SearchArticle'
 import './Accesorios'
+import './Top'
 import './main.css'
 
 document.Car = new Car()
