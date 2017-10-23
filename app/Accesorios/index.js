@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import config from '../../config'
 import template from './template'
 import PreLoading from '../Loader'
+import addEventClickToArticles from '../ArticleCard/addEventArticle'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -13,6 +14,7 @@ page('/accesorios', PreLoading, loadInventario, loadArticulos, (ctx, next) => {
 
   let html = template(ctx.articulos)
   content.innerHTML = html
+  addEventClickToArticles(ctx.articulos)
 })
 
 async function loadInventario (ctx, next) {
@@ -45,6 +47,7 @@ async function loadArticulos (ctx, next) {
           if (articuloItem.id == idArticulo && articuloItem.tipo.id == 2) {
             articuloItem.nuevo = ctx.inventario[invIndex].nuevo
             articuloItem.precio = ctx.inventario[invIndex].precio_venta
+            articuloItem.inventario = ctx.inventario[invIndex]
             articulos.push(articuloItem)
           }
         }
