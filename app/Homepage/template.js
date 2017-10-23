@@ -36,7 +36,7 @@ function splitArray (originArrayData) {
   for (let i = 0; i < chunkSize; i++) {
     let arrToWork = originArrayData.slice(0)
     newArr.push(arrToWork.splice(start, 4))
-    start += 3
+    start += 4
   }
 
   return newArr

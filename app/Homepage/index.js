@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import config from '../../config'
 import template from './template'
 import PreLoading from '../Loader'
+import addEventClickToArticles from '../ArticleCard/addEventArticle'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -13,6 +14,7 @@ page('/', PreLoading, loadInventario, loadArticulos, (ctx, next) => {
 
   let html = template(ctx.articulos)
   content.innerHTML = html
+  addEventClickToArticles(ctx.articulos)
 })
 
 async function loadInventario (ctx, next) {

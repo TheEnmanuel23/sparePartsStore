@@ -15,7 +15,14 @@ let card = article => {
 		      <span class="right">${article.precio}$</span>
 		    </div>
 		    <div class="card-action">
-		      <a href="/article/${article.id}">Ver Detalle</a>
+		    	<div class="row">
+		    		<div  class="col s12 m10 l10" >
+			      	<a href="/article/${article.id}">Detalle</a>
+			      </div>
+			      <div class="col s12 m2 l2" >
+			      	<a style="cursor: pointer;"><i id=btnAddSingleToCard${article.id} class="material-icons">add_shopping_cart</i></a>
+			      </div>
+			    </div>
 		    </div>  
 		    <div class="card-reveal">
 		      <span class="card-title grey-text text-darken-4">${article.descripcion}<i class="material-icons right">close</i></span>
@@ -24,6 +31,8 @@ let card = article => {
 		    </div>
 		  </div>
 		</div>`
+
+
 }
 
 function splitDescription (descripcion) {

@@ -15,4 +15,5 @@ import './Top'
 import './main.css'
 
 document.Car = new Car()
+
 page()
