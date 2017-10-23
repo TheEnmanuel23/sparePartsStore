@@ -51,13 +51,14 @@ const template = article => {
         </div>
         <div class="card-action">
           <div class="row">
-            <div class="col s12 m7">
+            <div class="col s12 m6">
+              <p><strong>Cantidad:</strong></p>
               <p class="range-field">
-                <input type="range" id="cantArticle" min="0" max=${article.inventario.stock} />
+                <input type="range" id="cantArticle" min="1" max=${article.inventario.stock} />
               </p>
             </div>
-            <div class="col s12 m5">
-              <a id="addToCard" class="waves-effect orange darken-2 btn"><i class="material-icons right">add_shopping_cart</i>Agregar</a>
+            <div class="col s12 m6">
+              <a id="addToCard" class="waves-effect btn"><i class="material-icons right">add_shopping_cart</i>Agregar</a>
             </div>
           </div>
         </div>

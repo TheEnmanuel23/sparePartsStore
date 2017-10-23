@@ -94,3 +94,8 @@ footer {
 footer .row {
 	font-style: normal !important;
 }
+
+#addToCard {
+	background-color: #304155 !important;
+	color: white !important;
+}
