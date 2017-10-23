@@ -10,6 +10,7 @@ import './ArticleDetail'
 import './ShoppingCar'
 import Car from './ShoppingCar/Car'
 import './SearchArticle'
+import './Accesorios'
 import './main.css'
 
 document.Car = new Car()
