@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import config from '../../config'
 import template from './template'
 import PreLoading from '../Loader'
+import addEventClickToArticles from '../ArticleCard/addEventArticle'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -13,6 +14,7 @@ page('/marcas/:id', PreLoading, loadModelos, loadArticulos, loadInventario, (ctx
   let content = document.querySelector('#content')
   content.innerHTML = html
 
+  addEventClickToArticles(ctx.articulos)
   $('.collapsible').collapsible()
 })
 
@@ -77,6 +79,7 @@ async function loadInventario (ctx, next) {
       if (articulo) {
         articulo.precio = inv.precio_venta
         articulo.nuevo = inv.nuevo
+        articulo.inventario = inv
         articulosPorInventario.push(articulo)
       }
     })
