@@ -6,7 +6,7 @@ const template = () => `
         	<h4 class="card-title center">Sing in / Sing up</h4>
          	<div class="row">
 	         	<div class="row center">
-	         		<a id="googleLogin" class="waves-effect waves-light btn red darken-1"><i class="material-icons right">cloud</i>Login con Google</a>
+	         		<a id="googleLogin" class="waves-effect waves-light btn red darken-1">Login con Google</a>
 	         	</div>
          	</div>
         </div>
