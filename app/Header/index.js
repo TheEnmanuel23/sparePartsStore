@@ -14,7 +14,9 @@ const info = `
             <div class="col s12 m4">
               <div class="row account-section">              
                 <div class="right-align">
-                  Bienvenido, <a href="#">Entrar</a> <i class="material-icons">perm_identity</i>
+                  <div id="userLoginContainer">
+                    <a href="/login">Entrar</a> <i class="material-icons">perm_identity</i>
+                  </div>
                 </div>
               </div>
               <div class="row datos-contacto">
