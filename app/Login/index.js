@@ -13,10 +13,12 @@ page('/login', (ctx, next) => {
 
 	  	firebase.auth().signInWithPopup(provider)
 				.then(result => {
-					let user = result.user
+					let user = result.user.providerData[0]
+					console.log(result)
 					let userLoginContainer = document.querySelector('#userLoginContainer')
 
-					let html = `Bienvenido, ${user.displayName}`
+					let html = `<p>Bienvenido, ${user.displayName}</p> <img class="photoURL" src=${user.photoURL} alt=${user.displayName} />`
+
 					userLoginContainer.innerHTML = html
 					page.redirect('/')
 				})

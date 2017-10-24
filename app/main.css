@@ -99,3 +99,8 @@ footer .row {
 	background-color: #304155 !important;
 	color: white !important;
 }
+
+.photoURL {
+	height: 40px;
+	border-radius: 50%;
+}
