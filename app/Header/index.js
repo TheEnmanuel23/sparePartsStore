@@ -14,8 +14,18 @@ const info = `
             <div class="col s12 m4">
               <div class="row account-section">              
                 <div class="right-align">
-                  <div id="userLoginContainer">
-                    <a href="/login">Entrar</a> <i class="material-icons">perm_identity</i>
+                  <div >
+                    <ul>                 
+                      <li style="cursor: pointer;" class="right">
+                        <a id="dropdownAccount" class="dropdown-button" data-activates="loginDropdown">
+                          <i class="material-icons">perm_identity</i>
+                          <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                      </li>
+                    </ul>
+                    <ul id="loginDropdown" class="dropdown-content">
+                      <li><a href="/login">Entrar</a></li>
+                    </ul>
                   </div>
                 </div>
               </div>
