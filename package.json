@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --progress"
+    "dev": "webpack-dev-server --progress",
+    "build": "webpack",
+    "start": "PORT=8000 yarn build && node server"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -19,6 +21,9 @@
     "webpack-dev-server": "^2.9.2"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
     "firebase": "^4.5.2",
     "material-icons": "^0.1.0",
     "materialize-css": "^0.100.2",
