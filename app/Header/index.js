@@ -68,7 +68,8 @@ const menu = `
     	</li>
       <li><a href="/">Inicio</a></li>
       <li><a href="/accesorios">Accesorios</a></li>
-      <li><a href="/top">Top 10</a></li>  
+      <li><a href="/top">Top 10</a></li>
+      <li><a href="/contacto">Contáctanos</a></li>
     </ul>
 <ul id="dropdown1" class="dropdown-content">
   <li><a href="/shoppingcar">Ver</a></li>

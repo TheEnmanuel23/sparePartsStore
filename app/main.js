@@ -13,6 +13,7 @@ import './SearchArticle'
 import './Accesorios'
 import './Top'
 import './Login'
+import './Contacto'
 import './main.css'
 
 document.Car = new Car()
