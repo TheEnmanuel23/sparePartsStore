@@ -27,11 +27,23 @@ app.get('/contacto', (req, res) => {
 	res.render('index')
 })
 
+app.get('/marcas/add', function(req, res){
+	res.render('index')
+})
+
 app.get('/marcas/:id', function(req, res){
 	res.render('index')
 })
 
+app.get('/article/add', function(req, res){
+	res.render('index')
+})
+
 app.get('/article/:id', function(req, res){
+	res.render('index')
+})
+
+app.get('/modelos/add', function(req, res){
 	res.render('index')
 })
 

@@ -1,7 +1,7 @@
 let newMenu = `
-  <li id="menuMarca"><a href="/contacto">Agregar Marca</a></li>
-  <li id="menuModel"><a href="/contacto">Agregar Modelo</a></li>
-  <li id="menuArticulo"><a href="/contacto">Agregar Artículo</a></li>
+  <li id="menuMarca"><a href="/marcas/add">Agregar Marca</a></li>
+  <li id="menuModel"><a href="/modelos/add">Agregar Modelo</a></li>
+  <li id="menuArticulo"><a href="/article/add">Agregar Artículo</a></li>
 `
 const addAdminMenu = () => {
 	let div = document.createElement('div')
