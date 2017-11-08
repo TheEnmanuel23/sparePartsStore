@@ -8,7 +8,7 @@ const template = (modelos, articulos) => {
     let articulosPorModelo = articulos.filter((item) => item.idModelo == mod.id)
 
     let articulosHTML = ''
-    articulosPorModelo.map(item => articulosHTML += ArticleCard(item, 6, 28))
+    articulosPorModelo.map(item => articulosHTML += ArticleCard(item, 4, 17))
 
     let modelTemplate = `<li>
             <div class="collapsible-header"><i class="material-icons">filter_drama</i>${mod.nombre}</div>
