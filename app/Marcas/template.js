@@ -1,4 +1,4 @@
-const template = data => {
+const template = (data = []) => {
 	let items = ''
 
 	data.map(item => {
@@ -6,7 +6,6 @@ const template = data => {
 	})
 
 	let html = `
-
      <ul class="collection"">
       <li class="center active list-marcas"><h5>Lista de marcas</h5></li>
       ${items}

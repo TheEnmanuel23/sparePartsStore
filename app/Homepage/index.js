@@ -23,7 +23,7 @@ async function loadInventario (ctx, next) {
       return snapshot.val()
     })
 
-    ctx.inventario = inventario.filter(item => item.nuevo)
+    ctx.inventario = inventario ? inventario.filter(item => item.nuevo) : []
     next()
 
   } catch (err) {

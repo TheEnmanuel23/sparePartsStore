@@ -2,7 +2,8 @@ import ArticleCard from '../ArticleCard'
 
 const template = (modelos, articulos) => {
   let items = ''
-  
+  if (!modelos || !articulos) return 
+    
   modelos.map(mod => {
     let articulosPorModelo = articulos.filter((item) => item.idModelo == mod.id)
 
