@@ -17,6 +17,7 @@ page('/article/add', () => {
   btnSaveArticulo.addEventListener('click', saveArticulo)
 
   loadModelosForArticulo()
+  $('#optionsTipo').material_select();
 })
 
 var articuloImageSelected = null
@@ -57,6 +58,14 @@ function template () {
 						    </select>
 						    <label>Seleccionar modelo</label>
 					  </div>
+              <div class="input-field col s6">
+                <select id="optionsTipo">
+                  <option value="0" disabled selected>Cambiar de opción</option>
+                  <option value="1">Repuesto</option>
+                  <option value="2">Accesorio</option>
+                </select>
+                <label>Seleccionar tipo</label>
+            </div>
           </div>
            <div class="row">
           	<div class="divider"></div>
@@ -108,16 +117,28 @@ function saveArticulo (e) {
 	let optionsModelos = document.querySelector('#optionsModelos')
 	let idModelo = optionsModelos.options[optionsModelos.selectedIndex].value
 
-	if (!idModelo) return alert('Seleccione un modelo!')
+  let optionsTipos = document.querySelector('#optionsTipo')
+  let idTipo = optionsTipos.options[optionsTipos.selectedIndex].value
+
+  if (!idModelo) return alert('Seleccione un modelo!')
+	if (!idTipo || idTipo == 0) return alert('Seleccione un tipo!')
 
 	if (!articuloImageSelected || !articuloImageSelected.name) {
 		alert('Seleccione una imagen!')
 	} else {
-		saveWithImage(idModelo)
+		saveWithImage(idModelo, idTipo == 1 ? 
+    {
+      id: idTipo,
+      descripcion: "Repuesto"
+    }:
+    {
+      id: idTipo,
+      descripcion: "Accesorio"
+    })
 	}	
 }
 
-function saveWithImage (idModelo) {
+function saveWithImage (idModelo, tipo) {
 	let storageRef = firebase.storage().ref()
   let thisRef = storageRef.child(articuloImageSelected.name);
 
@@ -131,10 +152,7 @@ function saveWithImage (idModelo) {
 			detalle: document.querySelector('#detalle').value,
 			img: imgURL,
 			idModelo: idModelo,
-			tipo : {
-	      descripcion : "Repuesto",
-	      id : 1
-	    }
+			tipo : tipo
 		})
 		
 		saveInventario(articleSaved.key)
@@ -150,7 +168,7 @@ function saveInventario (idArticulo) {
     cantidad_vendida : 0,
     idArticulo : idArticulo,
     idProveedor : 1,
-    nuevo : document.querySelector('#nuevo').value,
+    nuevo : document.querySelector('#nuevo').checked,
     precio_costo : document.querySelector('#precioCosto').value, 
     precio_venta : document.querySelector('#precioVenta').value,
     stock : document.querySelector('#cantidad').value
