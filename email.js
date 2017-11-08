@@ -6,7 +6,7 @@ const email = (data) => {
 	var transporter = nodemailer.createTransport(mg(auth))
 
 	var mailOptions = {
-		from: `"${data.name} ${data.lastName}" <${data.email}>`,
+		from: `"${data.name}" <${data.email}>`,
 		to: 'sparestoreparts@gmail.com',
 		subject: data.subject,
 		text: data.comments

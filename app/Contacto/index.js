@@ -13,14 +13,13 @@ page('/contacto', () => {
 
 function sendEmail () {
   let name = document.querySelector('#name').value || ''
-	let lastName = document.querySelector('#lastName').value || ''
 	let email = document.querySelector('#email').value || ''
 	let subject = document.querySelector('#subject').value || ''
 	let comments = document.querySelector('#comments').value || ''
 
 	fetch('/sendemail', {
 		method: 'POST',
-		body: JSON.stringify({ name, lastName, email, subject, comments }),
+		body: JSON.stringify({ name, email, subject, comments }),
 		headers: new Headers({ "Content-Type": "application/json" })
 	})
 	.then(res => {

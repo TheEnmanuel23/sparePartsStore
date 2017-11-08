@@ -9,10 +9,6 @@ const template = () => {
           <input name="name" id="name" type="text" class="validate">
           <label for="name">Nombre</label>
         </div>
-        <div class="input-field col s6">
-          <input name="lastName" id="lastName" type="text" class="validate">
-          <label for="lastName">Apellido</label>
-        </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
