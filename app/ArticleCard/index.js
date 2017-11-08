@@ -1,12 +1,12 @@
-let card = article => {
+let card = (article, sizeCard=4, splitSize=17) => {
 	return `      
-		<div class="col s12 m2 l4">
+		<div class="col s12 m2 l${sizeCard}">
 		  <div class="card">
 		    <div class="card-image">
 		      <img class="activator imgArticle" src=${article.img}>     
 		    </div>
 		    <div class="card-content">
-		      <span class="card-title activator grey-text text-darken-4">${splitDescription(article.descripcion)}<i class="material-icons right">more_vert</i></span>
+		      <span class="card-title activator grey-text text-darken-4">${splitDescription(article.descripcion, splitSize)}<i class="material-icons right">more_vert</i></span>
 		      ${
 		        article.nuevo ? `
 		          <div class="chip">Nuevo</div>`
@@ -35,11 +35,11 @@ let card = article => {
 
 }
 
-function splitDescription (descripcion) {
+function splitDescription (descripcion, splitSize) {
   let newdescripcion = descripcion.trim()
 
-  if (descripcion.length > 17) {
-    newdescripcion = descripcion.substr(0, 14) + ' ...'
+  if (descripcion.length > splitSize) {
+    newdescripcion = descripcion.substr(0, splitSize - 3) + ' ...'
   }
 
   return newdescripcion
