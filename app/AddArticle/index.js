@@ -30,7 +30,7 @@ function template () {
           <div class="row">
             <div class="input-field col s6">
               <input name="descripcion" id="descripcion" type="text" class="validate">
-              <label for="descripcion">Descripcion</label>
+              <label for="descripcion">Descripción</label>
             </div>
           </div>
           <div class="row">
@@ -57,6 +57,33 @@ function template () {
 						    </select>
 						    <label>Seleccionar modelo</label>
 					  </div>
+          </div>
+           <div class="row">
+          	<div class="divider"></div>
+          </div>
+          <div class="row">
+            <p>
+	             <input id="nuevo" type="checkbox" checked="checked" class="filled-in" />
+              <label for="nuevo">Nuevo</label>
+						</p>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input name="cantidad" id="cantidad" min="1" type="number" class="validate">
+              <label for="cantidad">Cantidad</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input name="precioCosto" id="precioCosto" min="0"  type="number" class="validate">
+              <label for="precioCosto">Precio costo</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input name="precioVenta" id="precioVenta" min="0" type="number" class="validate">
+              <label for="precioVenta">Precio venta</label>
+            </div>
           </div>
           <div class="row">
           	<div class="divider"></div>
@@ -99,7 +126,7 @@ function saveWithImage (idModelo) {
  	 	return snapshot.downloadURL
 	})
 	.then(imgURL => {
-		articulosRef.push({
+		let articleSaved = articulosRef.push({
 			descripcion: document.querySelector('#descripcion').value,
 			detalle: document.querySelector('#detalle').value,
 			img: imgURL,
@@ -109,11 +136,25 @@ function saveWithImage (idModelo) {
 	      id : 1
 	    }
 		})
+		
+		saveInventario(articleSaved.key)
 
 		Materialize.toast('Artículo guardado!', 3000, 'rounded')
 		page.redirect('/article/add')
 	})
 		.catch(err => console.error(err))
+}
+
+function saveInventario (idArticulo) {
+	firebase.database().ref('inventario').push({
+    cantidad_vendida : 0,
+    idArticulo : idArticulo,
+    idProveedor : 1,
+    nuevo : document.querySelector('#nuevo').value,
+    precio_costo : document.querySelector('#precioCosto').value, 
+    precio_venta : document.querySelector('#precioVenta').value,
+    stock : document.querySelector('#cantidad').value
+	})
 }
 
 function loadModelosForArticulo () {

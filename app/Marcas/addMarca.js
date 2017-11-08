@@ -41,13 +41,14 @@ function template () {
 				        <input class="file-path validate" type="text">
 				      </div>
             </div>
-          </div>
+          </div>         
           <div class="row">
-          	<div class="divider"></div>
+            <div class="divider"></div>
           </div>
           <div class="row">
           	<a id="saveMarca" class="waves-effect waves-light btn">Guardar</a>
           </div>
+
         </form>
     </div>
   </div>
