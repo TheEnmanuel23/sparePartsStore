@@ -6,7 +6,6 @@ const template = (articulos) => {
     rows +=  `
      <tr id=${item.id}>
       <td>${countRow++}</td>
-      <td>${item.id}</td>
       <td><a href="/article/${item.id}">${item.descripcion}</a></td>
       <td>${item.tipo.descripcion}</td>
       <td>${item.inventario.precio_venta}$</td>
@@ -20,7 +19,6 @@ const template = (articulos) => {
     <thead>
       <tr>
         <th>#</th>
-        <th>Id</th>
         <th>Artículo</th>
         <th>Tipo</th>
         <th>Precio</th>
