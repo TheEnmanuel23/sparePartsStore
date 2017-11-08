@@ -20,12 +20,20 @@ page('/marcas/:id', PreLoading, loadModelos, loadArticulos, loadInventario, (ctx
 
 async function loadModelos (ctx, next) {
   try {
-    let modelos = await db.ref('modelos').once('value').then(snapshot => {
+    let modelosObject = await db.ref('modelos').once('value').then(snapshot => {
       return snapshot.val()
     })
 
+    let modelosArray = []
+    let keys = Object.keys(modelosObject)
+    keys.map(key => {
+      let mod = modelosObject[key]
+      mod.id = key
+      modelosArray.push(mod)
+    })
+
     let modelosPorMarca = []
-    modelos.find(item => {
+    modelosArray.find(item => {
        if(item.idMarca == ctx.params.id) {
         modelosPorMarca.push(item)
        }
@@ -40,13 +48,21 @@ async function loadModelos (ctx, next) {
 
 async function loadArticulos (ctx, next) {
   try {
-    let articulos = await db.ref('articulos').once('value').then(snapshot => {
+    let articulosObject = await db.ref('articulos').once('value').then(snapshot => {
       return snapshot.val()
     })
 
     let articulosPorModelos = []
+    let articulosArray = []
 
-    articulos.find(art => {
+    let keys = Object.keys(articulosObject)
+    keys.map(key => {
+      let art = articulosObject[key]
+      art.id = key
+      articulosArray.push(art)
+    })
+
+    articulosArray.find(art => {
       let modelo = ctx.modelos.find(mod => {
         return mod.id == art.idModelo && art.tipo.id == 1
       })
@@ -65,13 +81,19 @@ async function loadArticulos (ctx, next) {
 
 async function loadInventario (ctx, next) {
   try {
-     let inventario = await db.ref('inventario').once('value').then(snapshot => {
+     let inventarioObject = await db.ref('inventario').once('value').then(snapshot => {
       return snapshot.val()
     })
 
     let articulosPorInventario = []
+    let inventarioArray = []
 
-    inventario.find(inv => {
+    let keys = Object.keys(inventarioObject)
+    keys.map(key => {
+      inventarioArray.push(inventarioObject[key])
+    })
+
+    inventarioArray.find(inv => {
       let articulo = ctx.articulos.find(art => {
         return art.id == inv.idArticulo
       })
