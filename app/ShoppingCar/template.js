@@ -11,7 +11,6 @@ const template = () => {
     let totalRow = item.cantidad * item.inventario.precio_venta
     rows +=  `
      <tr id=${item.id}>
-      <td>${item.id}</td>
       <td>${item.descripcion}</td>
       <td>${item.inventario.precio_venta}$</td>
       <td>${item.cantidad}</td>
@@ -25,7 +24,6 @@ const template = () => {
   <table class="striped">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Articulo</th>
         <th>Precio</th>
         <th>Cantidad</th>
