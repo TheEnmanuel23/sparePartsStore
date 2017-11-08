@@ -6,6 +6,10 @@ import validateRegisterUser from './validateRegisterUser'
 const login = () => {
 	let provider = new firebase.auth.GoogleAuthProvider()
 
+	provider.setCustomParameters({
+	   'prompt': 'select_account'
+	})
+	
 	firebase.auth().signInWithPopup(provider)
 		.then(result => {
 			let user = result.user.providerData[0]
