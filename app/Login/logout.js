@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import { removeAdminMenu } from './adminMenu'
+import page from 'page'
 
 const logout = () => {
 	let salirBtn = document.querySelector('#salir')
@@ -25,7 +26,8 @@ function signOut () {
       if (window.isAdmin) {
       	removeAdminMenu()
       }
-      
+      document.Car.articles = []
+
 		}).catch(function(error) {
 		console.log(err.message)
 	})
