@@ -77,6 +77,14 @@ function saveModelo (e) {
 
 	if (!idMarca) return alert('Seleccione un marca!')
 
+	if (!modeloImageSelected || !modeloImageSelected.name) {
+		saveWithoutImage(idMarca)
+	} else {
+		saveWithImage(idMarca)
+	}	
+}
+
+function saveWithImage (idMarca) {
 	let storageRef = firebase.storage().ref()
   let thisRef = storageRef.child(modeloImageSelected.name);
 
@@ -93,7 +101,17 @@ function saveModelo (e) {
 		Materialize.toast('Modelo guardado!', 3000, 'rounded')
 		page.redirect('/')
 	})
-	.catch(err => console.error(err))
+		.catch(err => console.error(err))
+}
+
+function saveWithoutImage (idMarca) {
+	modelosRef.push({
+		nombre: document.querySelector('#nombre').value,
+		img: "",
+		idMarca: idMarca
+	})
+	Materialize.toast('Modelo guardado!', 3000, 'rounded')
+	page.redirect('/')
 }
 
 function loadMarcasForModelo () {
