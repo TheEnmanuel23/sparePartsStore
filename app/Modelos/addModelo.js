@@ -125,7 +125,10 @@ function loadMarcasForModelo () {
 		})
 
 		let optionsMarcas = document.querySelector('#optionsMarcas')
-		optionsMarcas.innerHTML = options
+		if (optionsMarcas) {
+			optionsMarcas.innerHTML = options
+		} 
+		
 		$('#optionsMarcas').material_select();
 	})
 }

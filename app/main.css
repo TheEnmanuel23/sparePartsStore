@@ -7,6 +7,7 @@
 
 main {
 	min-height: 400px;
+	padding: 0 100px;
 }
 
 .preloader-wrapper {
@@ -103,4 +104,8 @@ footer .row {
 .photoURL {
 	height: 40px;
 	border-radius: 50%;
+}
+
+.imgArticle {
+	max-height: 161px;
 }

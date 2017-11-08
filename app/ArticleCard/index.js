@@ -1,9 +1,9 @@
 let card = article => {
 	return `      
-		<div class="col s12 m2 l3">
+		<div class="col s12 m2 l4">
 		  <div class="card">
 		    <div class="card-image">
-		      <img class="activator" src=${article.img}>     
+		      <img class="activator imgArticle" src=${article.img}>     
 		    </div>
 		    <div class="card-content">
 		      <span class="card-title activator grey-text text-darken-4">${splitDescription(article.descripcion)}<i class="material-icons right">more_vert</i></span>
@@ -36,10 +36,10 @@ let card = article => {
 }
 
 function splitDescription (descripcion) {
-  let newdescripcion = descripcion
+  let newdescripcion = descripcion.trim()
 
-  if (descripcion.length > 23) {
-    newdescripcion = descripcion.substr(0, 23) + ' ...'
+  if (descripcion.length > 17) {
+    newdescripcion = descripcion.substr(0, 14) + ' ...'
   }
 
   return newdescripcion

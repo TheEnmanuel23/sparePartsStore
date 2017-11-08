@@ -29,14 +29,14 @@ const template = content => {
 }
 
 function splitArray (originArrayData) {
-  let chunkSize = Math.ceil(originArrayData.length/4)
+  let chunkSize = Math.ceil(originArrayData.length/3)
   let start = 0
   let newArr = []
 
   for (let i = 0; i < chunkSize; i++) {
     let arrToWork = originArrayData.slice(0)
-    newArr.push(arrToWork.splice(start, 4))
-    start += 4
+    newArr.push(arrToWork.splice(start, 3))
+    start += 3
   }
 
   return newArr
