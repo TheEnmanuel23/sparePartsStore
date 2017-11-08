@@ -19,11 +19,17 @@ page('/search/:value', PreLoading, loadInventario, loadArticulos, (ctx, next) =>
 
 async function loadInventario (ctx, next) {
   try {
-    let inventario = await db.ref('inventario').once('value').then(snapshot => {
+    let inventarioObject = await db.ref('inventario').once('value').then(snapshot => {
       return snapshot.val()
     })
 
-    ctx.inventario = inventario
+    let inventarioArray = []
+    let keys = Object.keys(inventarioObject)
+    keys.map(key => {
+      inventarioArray.push(inventarioObject[key])
+    })
+
+    ctx.inventario = inventarioArray
     next()
 
   } catch (err) {
@@ -34,15 +40,23 @@ async function loadInventario (ctx, next) {
 async function loadArticulos (ctx, next) {
   try {
     let articulos = []
-    let allArticles = await db.ref('articulos').once('value').then(snapshot => {
+    let allArticlesObject = await db.ref('articulos').once('value').then(snapshot => {
       return snapshot.val()
+    })
+
+    let allArticlesArray = []
+    let keysArticle = Object.keys(allArticlesObject)
+    keysArticle.map(key => {
+      let art = allArticlesObject[key]
+      art.id = key
+      allArticlesArray.push(art)
     })
 
     for (let invIndex = 0; invIndex < ctx.inventario.length; invIndex ++) {
       let idArticulo = ctx.inventario[invIndex].idArticulo
 
-      for (let i = 0; i < allArticles.length; i++) {
-        let articuloItem = allArticles[i]
+      for (let i = 0; i < allArticlesArray.length; i++) {
+        let articuloItem = allArticlesArray[i]
 
         if (articuloItem) {
           if (articuloItem.id == idArticulo) {
