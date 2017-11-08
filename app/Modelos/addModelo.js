@@ -99,7 +99,7 @@ function saveWithImage (idMarca) {
 			idMarca: idMarca
 		})
 		Materialize.toast('Modelo guardado!', 3000, 'rounded')
-		page.redirect('/')
+		page.redirect('/modelos/add')
 	})
 		.catch(err => console.error(err))
 }

@@ -1,7 +1,7 @@
 import page from 'page'
 import firebase from 'firebase'
 import config from '../../config'
-
+import loadMarcas from './index'
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const marcasRef = firebase.database().ref('marcas')
@@ -75,7 +75,8 @@ function saveMarca (e) {
 			img: imgURL
 		})
 		Materialize.toast('Marca guardada!', 3000, 'rounded')
-		page.redirect('/')
+		page.redirect('/marcas/add')
+    loadMarcas()
 	})
 	.catch(err => console.error(err))
 }
