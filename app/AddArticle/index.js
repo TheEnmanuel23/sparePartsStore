@@ -110,7 +110,7 @@ function saveWithImage (idModelo) {
 	    }
 		})
 
-		Materialize.toast('articulo guardado!', 3000, 'rounded')
+		Materialize.toast('Artículo guardado!', 3000, 'rounded')
 		page.redirect('/article/add')
 	})
 		.catch(err => console.error(err))
