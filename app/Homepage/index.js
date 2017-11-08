@@ -23,7 +23,14 @@ async function loadInventario (ctx, next) {
       return snapshot.val()
     })
 
-    ctx.inventario = inventario ? inventario.filter(item => item.nuevo) : []
+    let keys = Object.keys(inventario)
+    let inventarioArray = []
+
+    keys.map(key => {
+      inventarioArray.push(inventario[key])
+    })
+
+    ctx.inventario = inventarioArray.filter(item => item.nuevo == true)
     next()
 
   } catch (err) {
@@ -40,20 +47,23 @@ async function loadArticulos (ctx, next) {
 
     for (let invIndex = 0; invIndex < ctx.inventario.length; invIndex ++) {
       let idArticulo = ctx.inventario[invIndex].idArticulo
-      
-      for (let i = 0; i < allArticles.length; i++) {
-        let articuloItem = allArticles[i]
+
+      let keysArticle = Object.keys(allArticles)
+
+      keysArticle.map(key => {
+        let articuloItem = allArticles[key]
+
         if (articuloItem) {
-          if (articuloItem.id == idArticulo && articuloItem.tipo.id == 1) {
+          if (key == idArticulo && articuloItem.tipo.id == 1) {
             articuloItem.nuevo = ctx.inventario[invIndex].nuevo
             articuloItem.precio = ctx.inventario[invIndex].precio_venta
             articuloItem.inventario = ctx.inventario[invIndex]
             articulos.push(articuloItem)
           }
         }
-      }
+      }) 
     }
-
+    console.log(articulos)
     ctx.articulos = articulos
     next()
   } catch (err) {
