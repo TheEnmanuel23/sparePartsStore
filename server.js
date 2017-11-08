@@ -48,8 +48,13 @@ app.get('/shoppingcar', function(req, res){
 })
 
 app.post('/sendemail', (req, res) => {
-	email(req.body)
-	res.end('yes')
+	try {	
+		email(req.body)
+		res.status(200).send('Done')
+	}
+	catch (err) {
+		res.status(500).send("Fail")
+	}
 })
 
 app.listen(PORT, (err) => {
