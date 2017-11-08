@@ -23,11 +23,19 @@ page('/article/:id', PreLoading, loadArticle, loadInventario, loadModelo, loadMa
 
 async function loadArticle (ctx, next) {
 	try {
-		let articulos = await db.ref('articulos').once('value').then(snapshot => {
+		let allArticleObject = await db.ref('articulos').once('value').then(snapshot => {
 	    return snapshot.val()
 	  })
 
-		let articulo = articulos.find(art => {
+		let allArticleArray = []
+		let keysArticle = Object.keys(allArticleObject)
+		keysArticle.map(key => {
+			let art = allArticleObject[key]
+			art.id = key
+			allArticleArray.push(art)
+		})
+
+		let articulo = allArticleArray.find(art => {
 			return art.id == ctx.params.id
 		})
 
@@ -40,11 +48,17 @@ async function loadArticle (ctx, next) {
 
 async function loadInventario (ctx, next) {
 	try {
-		let inventario = await db.ref('inventario').once('value').then(snapshot => {
+		let allInventarioObject = await db.ref('inventario').once('value').then(snapshot => {
 	    return snapshot.val()
 	  })
 
-		let articuloInventario = inventario.find(inv => {
+		let inventarioArray = []
+		let keysInventario = Object.keys(allInventarioObject)
+		keysInventario.map(key => {
+			inventarioArray.push(allInventarioObject[key])
+		})
+
+		let articuloInventario = inventarioArray.find(inv => {
 			return inv.idArticulo == ctx.params.id
 		})
 
@@ -57,11 +71,20 @@ async function loadInventario (ctx, next) {
 
 async function loadModelo (ctx, next) {
 	try {
-    let modelos = await db.ref('modelos').once('value').then(snapshot => {
+    let allModelosObject = await db.ref('modelos').once('value').then(snapshot => {
       return snapshot.val()
     })
 
-    let modelo = modelos.find(item => {
+    let modelosArray = []
+    let keysModelos = Object.keys(allModelosObject)
+
+    keysModelos.map(key => {
+    	let mod = allModelosObject[key]
+    	mod.id = key
+    	modelosArray.push(mod)
+    })
+
+    let modelo = modelosArray.find(item => {
        return item.id == ctx.articulo.idModelo
     })
     
@@ -74,11 +97,19 @@ async function loadModelo (ctx, next) {
 
 async function loadMarca (ctx, next) {
 	try {
-    let marcas = await db.ref('marcas').once('value').then(snapshot => {
+    let allMarcasObject = await db.ref('marcas').once('value').then(snapshot => {
       return snapshot.val()
     })
 
-    let marca = marcas.find(item => {
+		let marcasArray = []
+		let keysMarcas = Object.keys(allMarcasObject)
+		keysMarcas.map(key => {
+			let mar = allMarcasObject[key]
+			mar.id = key
+			marcasArray.push(mar)
+		})
+
+    let marca = marcasArray.find(item => {
        return item.id == ctx.articulo.modelo.idMarca
     })
     

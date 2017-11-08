@@ -55,6 +55,7 @@ async function loadArticulos (ctx, next) {
 
         if (articuloItem) {
           if (key == idArticulo && articuloItem.tipo.id == 1) {
+            articuloItem.id = key
             articuloItem.nuevo = ctx.inventario[invIndex].nuevo
             articuloItem.precio = ctx.inventario[invIndex].precio_venta
             articuloItem.inventario = ctx.inventario[invIndex]
