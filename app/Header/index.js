@@ -49,7 +49,7 @@ const info = `
       </div>`
 
 const menu = `
-    <ul class="hide-on-med-and-down">
+    <ul class="hide-on-med-and-down" id="mainMenu">
     	<li class="right"><a class="dropdown-button" href="#!" data-activates="dropdown1">
 	  		<i class="icon-shopping-car mi mi-shopping-cart"></i>
 	  		<i class="material-icons right">arrow_drop_down</i></a>

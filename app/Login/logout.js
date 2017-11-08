@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import { removeAdminMenu } from './adminMenu'
 
 const logout = () => {
 	let salirBtn = document.querySelector('#salir')
@@ -20,6 +21,11 @@ function signOut () {
 	  dropdownAccount.innerHTML = `
 	  	<i class="material-icons">perm_identity</i>
       <i class="material-icons right">arrow_drop_down</i>`
+
+      if (window.isAdmin) {
+      	removeAdminMenu()
+      }
+      
 		}).catch(function(error) {
 		console.log(err.message)
 	})
