@@ -9,7 +9,7 @@ const db = firebase.database()
 const loadMarcas = async () => {
   try {
     await db.ref('marcas').once('value').then(snapshot => {
-      let marcas = snapshot.val() || []
+      let marcas = snapshot.val() || {}
       let html = template(marcas)
       let menu = document.querySelector('#menu')
       menu.innerHTML = html
