@@ -16,10 +16,11 @@ function sendEmail () {
 	let email = document.querySelector('#email').value || ''
 	let subject = document.querySelector('#subject').value || ''
 	let comments = document.querySelector('#comments').value || ''
+	let articulo = document.querySelector('#articulo').value || ''
 
 	fetch('/sendemail', {
 		method: 'POST',
-		body: JSON.stringify({ name, email, subject, comments }),
+		body: JSON.stringify({ name, email, subject, comments, articulo }),
 		headers: new Headers({ "Content-Type": "application/json" })
 	})
 	.then(res => {

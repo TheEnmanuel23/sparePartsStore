@@ -20,6 +20,12 @@ const template = () => {
               <label for="subject">Asunto</label>
             </div>
             <div class="input-field col s6">
+              <input name="articulo" id="articulo" type="text" class="validate">
+              <label for="articulo">Especificar artículo</label>
+            </div>
+          </div>
+           <div class="row">
+            <div class="input-field col s6">
               <textarea name="comments" id="comments" class="materialize-textarea" data-length="120"></textarea>
               <label for="comments">Comentarios</label>
             </div>
