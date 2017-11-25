@@ -1,5 +1,9 @@
 import page from 'page'
 import template from './template'
+import firebase from 'firebase'
+import config from '../../config'
+
+if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 page('/contacto', () => {
   let content = document.querySelector('#content')
@@ -9,6 +13,8 @@ page('/contacto', () => {
 
   let enviarContacto = document.querySelector('#enviarContacto')
   enviarContacto.addEventListener('click', sendEmail)
+  
+  loadSubjects()
 })
 
 function sendEmail () {
@@ -45,4 +51,20 @@ function sentEmail () {
   content.innerHTML = htmlSentEmail
 
   Materialize.toast('Correo enviado!', 3000, 'rounded')
+}
+
+function loadSubjects () {
+	firebase.database().ref('asuntos').once('value').then(snapshot => {
+		let store = snapshot.val()
+		let keys = Object.keys(store)
+
+		let options = '<option value="" disabled selected>Seleccionar asunto</option>'
+		keys.map(key => {
+			options += `<option value=${key}>${store[key].descripcion}</option>`
+		})
+
+		let optionsAsuntos = document.querySelector('#optionsAsuntos')
+		optionsAsuntos.innerHTML = options
+		$('#optionsAsuntos').material_select();
+	})
 }

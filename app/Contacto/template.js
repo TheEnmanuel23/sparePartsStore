@@ -16,8 +16,10 @@ const template = () => {
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <input name="subject" id="subject" type="text" class="validate">
-              <label for="subject">Asunto</label>
+              <select id="optionsAsuntos">
+                <option value="" disabled selected>Cambiar de opción</option>
+              </select>
+              <label>Seleccionar asunto</label>
             </div>
             <div class="input-field col s6">
               <input name="articulo" id="articulo" type="text" class="validate">
