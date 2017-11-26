@@ -18,12 +18,14 @@ page('/contacto', () => {
 })
 
 function sendEmail () {
+	let optionsAsuntos = document.querySelector('#optionsAsuntos')
+	let subject = optionsAsuntos.options[optionsAsuntos.selectedIndex].value
+
   let name = document.querySelector('#name').value || ''
 	let email = document.querySelector('#email').value || ''
-	let subject = document.querySelector('#subject').value || ''
 	let comments = document.querySelector('#comments').value || ''
 	let articulo = document.querySelector('#articulo').value || ''
-
+	
 	fetch('/sendemail', {
 		method: 'POST',
 		body: JSON.stringify({ name, email, subject, comments, articulo }),
@@ -31,6 +33,7 @@ function sendEmail () {
 	})
 	.then(res => {
 		if (res.status && res.status == 200) {
+			saveEmail({name, email, subject, comments, articulo})
 			sentEmail()
 		}		
 	})
@@ -66,5 +69,15 @@ function loadSubjects () {
 		let optionsAsuntos = document.querySelector('#optionsAsuntos')
 		optionsAsuntos.innerHTML = options
 		$('#optionsAsuntos').material_select();
+	})
+}
+
+function saveEmail (emailData) {
+	firebase.database().ref('correosEnviados').push({
+		name: emailData.name,
+		email: emailData.email,
+		subject: emailData.subject,
+		comments: emailData.comments,
+		articulo: emailData.articulo
 	})
 }
