@@ -95,8 +95,10 @@ function addEventRemoveOfShoppingCar () {
   articulosToRemove.map(item => {
     let element = document.querySelector(`#del-${item.id}`)
     element.addEventListener('click', () => {
-      document.Car.removeOfCar(item)
-      page.redirect('/shoppingcar')
+      if (confirm('¿Está seguro de quitar este artículo del carrito?') ==  true) {
+        document.Car.removeOfCar(item)
+        page.redirect('/shoppingcar')
+      }
     })
   })
 }
