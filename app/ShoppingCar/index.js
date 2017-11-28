@@ -29,6 +29,8 @@ page('/shoppingcar',  () => {
       actualizarInventario(document.Car.articles)
       realizarCompra()
     })
+
+    addEventRemoveOfShoppingCar()
   }
 })
 
@@ -80,9 +82,21 @@ function dateNow () {
 function actualizarInventario (articulos) {
   const db = firebase.database().ref('inventario')
   articulos.map(item => {
-    db.child(item.inventario.id).update({
+    db.child(item.inventario.id).updatey({
       cantidad_vendida: item.inventario.cantidad_vendida + item.cantidad,
       stock: item.inventario.stock - item.cantidad
     })  
   })  
+}
+
+function addEventRemoveOfShoppingCar () {
+  let articulosToRemove = document.Car.articles
+
+  articulosToRemove.map(item => {
+    let element = document.querySelector(`#del-${item.id}`)
+    element.addEventListener('click', () => {
+      document.Car.removeOfCar(item)
+      page.redirect('/shoppingcar')
+    })
+  })
 }
