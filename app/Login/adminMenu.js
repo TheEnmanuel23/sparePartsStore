@@ -14,6 +14,20 @@ let newMenu = `
       <li><a href="/article/add">Artículo</a></li>
     </ul>
   </li>
+  <li>
+  	 <ul>                 
+      <li style="cursor: pointer;" class="right">
+        <a id="verDropdownButton" class="dropdown-button" data-activates="verDropdown">
+          Ver
+          <i class="material-icons right">arrow_drop_down</i>
+        </a>
+      </li>
+    </ul>
+    <ul id="verDropdown" class="dropdown-content">
+      <li><a href="/emails">Correos</a></li>
+      <li><a href="/ventas">Ventas</a></li>
+    </ul>
+  </li>
 `
 const addAdminMenu = () => {
 	let div = document.createElement('div')
@@ -23,6 +37,7 @@ const addAdminMenu = () => {
 	let mainMenu = document.querySelector('#mainMenu')
 	mainMenu.appendChild(div)
 	$('#agregarDropdownButton').dropdown()
+	$('#verDropdownButton').dropdown()
 }
 
 const removeAdminMenu = () => {

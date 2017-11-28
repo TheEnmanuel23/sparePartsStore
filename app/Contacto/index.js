@@ -2,6 +2,7 @@ import page from 'page'
 import template from './template'
 import firebase from 'firebase'
 import config from '../../config'
+import currentDate from '../getCurrentDate'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -20,7 +21,7 @@ page('/contacto', () => {
 function sendEmail () {
 	let optionsAsuntos = document.querySelector('#optionsAsuntos')
 	let subject = optionsAsuntos.options[optionsAsuntos.selectedIndex].value
-
+	let subjectText = optionsAsuntos.options[optionsAsuntos.selectedIndex].innerText
   let name = document.querySelector('#name').value || ''
 	let email = document.querySelector('#email').value || ''
 	let comments = document.querySelector('#comments').value || ''
@@ -28,7 +29,7 @@ function sendEmail () {
 	
 	fetch('/sendemail', {
 		method: 'POST',
-		body: JSON.stringify({ name, email, subject, comments, articulo }),
+		body: JSON.stringify({ name, email, subject: subjectText, comments, articulo }),
 		headers: new Headers({ "Content-Type": "application/json" })
 	})
 	.then(res => {
@@ -78,6 +79,7 @@ function saveEmail (emailData) {
 		email: emailData.email,
 		subject: emailData.subject,
 		comments: emailData.comments,
-		articulo: emailData.articulo
+		articulo: emailData.articulo,
+		date: currentDate()
 	})
 }

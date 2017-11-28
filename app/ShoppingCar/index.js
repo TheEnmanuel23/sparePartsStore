@@ -2,6 +2,7 @@ import page from 'page'
 import template from './template'
 import firebase from 'firebase'
 import config from '../../config'
+import currentDate from '../getCurrentDate'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -42,7 +43,7 @@ function realizarCompra () {
   }
 
   firebase.database().ref('usuarioCompras').push({
-    fecha: dateNow(),
+    fecha: currentDate(),
     usuario: window.currentUserId,
     articulos: document.Car.articles.map(item => {
       return {
@@ -59,24 +60,6 @@ function realizarCompra () {
   document.Car.articles = []
   alert('Compra realizada con éxito!')
   page.redirect('/')
-}
-
-function dateNow () {
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth()+1; //January is 0!
-  var yyyy = today.getFullYear();
-
-  if(dd<10) {
-      dd = '0'+dd
-  } 
-
-  if(mm<10) {
-      mm = '0'+mm
-  } 
-
-  today = mm + '/' + dd + '/' + yyyy;
-  return today
 }
 
 function actualizarInventario (articulos) {
