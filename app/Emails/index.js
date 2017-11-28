@@ -8,11 +8,12 @@ if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
 
-page('/emails', PreLoading, (ctx, next) => {
+page('/emails', PreLoading, loadEmails, (ctx, next) => {
 	let content = document.querySelector('#content')
 
-  let html = template([])
+  let html = template(ctx.emails)
   content.innerHTML = html
+
   loadSubjects()
   $('#filtroFechaInicioCorreo').pickadate({
     selectMonths: true,
@@ -37,5 +38,27 @@ function loadSubjects () {
 		let optionsAsuntos = document.querySelector('#optionsAsuntosFilter')
 		optionsAsuntos.innerHTML = options
 		$('#optionsAsuntosFilter').material_select();
+	})
+}
+
+function loadEmails (ctx, next) {
+	firebase.database().ref('correosEnviados').once('value').then(snapshot => {
+		let store = snapshot.val()
+		let keys = Object.keys(store)
+
+		let emails = []
+
+		keys.map(key => {
+			let email = store[key]
+			email.id = key
+			emails.push(email)
+		})
+
+		let emailSorted = emails.sort((a, b) => {
+			return new Date(a.date).getTime() - new Date(b.date).getTime()
+		})
+
+		ctx.emails = emailSorted
+		next()
 	})
 }

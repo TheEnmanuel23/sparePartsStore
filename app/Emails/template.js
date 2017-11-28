@@ -1,18 +1,17 @@
 const template = (emails) => {
+  console.log(emails)
   let rows = ''
   let countRow = 1
-/*
-	articulos.map(item => {
+	emails.map(item => {
     rows +=  `
      <tr id=${item.id}>
       <td>${countRow++}</td>
-      <td><a href="/article/${item.id}">${item.descripcion}</a></td>
-      <td>${item.tipo.descripcion}</td>
-      <td>${item.inventario.precio_venta}$</td>
-      <td class="center">${item.inventario.cantidad_vendida}</td>
+      <td>${item.subject}</td>
+      <td><a href="/emails/${item.id}">${item.name}</a></td>
+      <td>${item.date}</td>
     </tr>
     `
-  })*/
+  })
 
   let table = `
   <table class="striped">
@@ -25,7 +24,7 @@ const template = (emails) => {
       </tr>
     </thead>
     <tbody>
-      
+      ${rows}
     </tbody>
   </table>`
 
@@ -40,7 +39,6 @@ const template = (emails) => {
               <select id="optionsAsuntosFilter">
                 <option value="" disabled selected>Cambiar de opción</option>
               </select>
-              <label>Seleccionar asunto</label>
             </div>
             <div class="col s12 m4 l4">
               <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaInicioCorreo">
