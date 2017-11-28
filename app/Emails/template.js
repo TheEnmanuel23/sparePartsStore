@@ -44,7 +44,7 @@ const template = (emails) => {
               <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaInicioCorreo">
             </div>
             <div class="col s12 m4 l4">
-              <a class="waves-effect waves-light btn">Filtrar</a>
+              <a id="filtrarCorreos" class="waves-effect waves-light btn">Filtrar</a>
             </div>
           </div>
           ${table}

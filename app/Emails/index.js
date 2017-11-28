@@ -14,7 +14,8 @@ page('/emails', PreLoading, loadAsuntos, loadEmails, (ctx, next) => {
   let html = template(ctx.emails)
   content.innerHTML = html
 
-  loadSubjects()
+  loadSubjectsDropdown(ctx.asuntos)
+
   $('#filtroFechaInicioCorreo').pickadate({
     selectMonths: true,
     selectYears: 15,
@@ -23,22 +24,22 @@ page('/emails', PreLoading, loadAsuntos, loadEmails, (ctx, next) => {
     close: 'Ok',
     closeOnSelect: false
   })
+
+  let btnFiltrarCorreos = document.querySelector('#filtrarCorreos')
+  btnFiltrarCorreos.addEventListener('click', filterEmails)
 })
 
-function loadSubjects () {
-	firebase.database().ref('asuntos').once('value').then(snapshot => {
-		let store = snapshot.val()
-		let keys = Object.keys(store)
+function loadSubjectsDropdown (asuntos) {
+	let keys = Object.keys(asuntos)
 
-		let options = ''
-		keys.map(key => {
-			options += `<option value=${key}>${store[key].descripcion}</option>`
-		})
-		options += '<option value="td" selected>Todo</option>'
-		let optionsAsuntos = document.querySelector('#optionsAsuntosFilter')
-		optionsAsuntos.innerHTML = options
-		$('#optionsAsuntosFilter').material_select();
+	let options = ''
+	keys.map(key => {
+		options += `<option value=${key}>${asuntos[key].descripcion}</option>`
 	})
+	options += '<option value="td" selected>Todo</option>'
+	let optionsAsuntos = document.querySelector('#optionsAsuntosFilter')
+	optionsAsuntos.innerHTML = options
+	$('#optionsAsuntosFilter').material_select();
 }
 
 function loadAsuntos (ctx, next) {
@@ -66,4 +67,8 @@ function loadEmails (ctx, next) {
 		ctx.emails = emails
 		next()
 	})
+}
+
+function filterEmails () {
+
 }
