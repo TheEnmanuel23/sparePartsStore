@@ -1,8 +1,7 @@
-const currentDate = () => {
-	var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth()+1;
-  var yyyy = today.getFullYear()
+const currentDate = (date = new Date()) => {
+  var dd = date.getDate();
+  var mm = date.getMonth()+1;
+  var yyyy = date.getFullYear()
 
   if(dd<10) {
       dd = '0'+dd
@@ -12,8 +11,8 @@ const currentDate = () => {
       mm = '0'+mm
   } 
 
-  today = `${dd}/${mm}/${yyyy}`
-  return today
+  date = `${dd}/${mm}/${yyyy}`
+  return date
 }
 
 export default currentDate

@@ -80,6 +80,6 @@ function saveEmail (emailData) {
 		subject: emailData.subject,
 		comments: emailData.comments,
 		articulo: emailData.articulo,
-		date: currentDate()
+		date: currentDate(new Date())
 	})
 }

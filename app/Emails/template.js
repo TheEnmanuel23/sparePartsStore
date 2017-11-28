@@ -1,5 +1,4 @@
 const template = (emails) => {
-  console.log(emails)
   let rows = ''
   let countRow = 1
 	emails.map(item => {
@@ -23,7 +22,7 @@ const template = (emails) => {
         <th>Fecha</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="bodyEmails">
       ${rows}
     </tbody>
   </table>`
@@ -41,7 +40,7 @@ const template = (emails) => {
               </select>
             </div>
             <div class="col s12 m4 l4">
-              <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaInicioCorreo">
+              <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaCorreo">
             </div>
             <div class="col s12 m4 l4">
               <a id="filtrarCorreos" class="waves-effect waves-light btn">Filtrar</a>
