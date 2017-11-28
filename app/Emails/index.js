@@ -8,7 +8,7 @@ if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
 
-page('/emails', PreLoading, loadEmails, (ctx, next) => {
+page('/emails', PreLoading, loadAsuntos, loadEmails, (ctx, next) => {
 	let content = document.querySelector('#content')
 
   let html = template(ctx.emails)
@@ -41,6 +41,14 @@ function loadSubjects () {
 	})
 }
 
+function loadAsuntos (ctx, next) {
+		firebase.database().ref('asuntos').once('value').then(snapshot => {
+			let store = snapshot.val()
+			ctx.asuntos = store
+			next()
+	})
+}
+
 function loadEmails (ctx, next) {
 	firebase.database().ref('correosEnviados').once('value').then(snapshot => {
 		let store = snapshot.val()
@@ -51,14 +59,11 @@ function loadEmails (ctx, next) {
 		keys.map(key => {
 			let email = store[key]
 			email.id = key
+			email.subject = ctx.asuntos[email.subject].descripcion
 			emails.push(email)
 		})
 
-		let emailSorted = emails.sort((a, b) => {
-			return new Date(a.date).getTime() - new Date(b.date).getTime()
-		})
-
-		ctx.emails = emailSorted
+		ctx.emails = emails
 		next()
 	})
 }
