@@ -13,7 +13,7 @@ const login = () => {
 	firebase.auth().signInWithPopup(provider)
 		.then(result => {
 			let user = result.user.providerData[0]
-			console.log('>>>>>', user)
+			
 			let loginDropdown = document.querySelector('#loginDropdown')
 			let dropdownAccount = document.querySelector('#dropdownAccount')
 

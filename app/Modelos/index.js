@@ -90,7 +90,9 @@ async function loadInventario (ctx, next) {
 
     let keys = Object.keys(inventarioObject)
     keys.map(key => {
-      inventarioArray.push(inventarioObject[key])
+      let invToAdd = inventarioObject[key]
+      invToAdd.id = key
+      inventarioArray.push(invToAdd)
     })
 
     inventarioArray.find(inv => {

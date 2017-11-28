@@ -27,7 +27,9 @@ async function loadInventario (ctx, next) {
     let inventarioArray = []
 
     keys.map(key => {
-      inventarioArray.push(inventario[key])
+      let invToAdd = inventario[key]
+      invToAdd.id = key
+      inventarioArray.push(invToAdd)
     })
 
     ctx.inventario = inventarioArray.filter(item => item.nuevo == true)
@@ -64,7 +66,7 @@ async function loadArticulos (ctx, next) {
         }
       }) 
     }
-    console.log(articulos)
+    
     ctx.articulos = articulos
     next()
   } catch (err) {

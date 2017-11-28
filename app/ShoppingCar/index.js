@@ -25,7 +25,8 @@ page('/shoppingcar',  () => {
     })
 
     btnComprar.addEventListener('click', () => {
-      if (!window.currentUserId) return alert('Inicie sesión pare realizar la compra.')
+      if (!window.currentUserId) return alert('Inicie sesión para realizar la compra.')
+      actualizarInventario(document.Car.articles)
       realizarCompra()
     })
   }
@@ -74,4 +75,14 @@ function dateNow () {
 
   today = mm + '/' + dd + '/' + yyyy;
   return today
+}
+
+function actualizarInventario (articulos) {
+  const db = firebase.database().ref('inventario')
+  articulos.map(item => {
+    db.child(item.inventario.id).update({
+      cantidad_vendida: item.inventario.cantidad_vendida + item.cantidad,
+      stock: item.inventario.stock - item.cantidad
+    })  
+  })  
 }

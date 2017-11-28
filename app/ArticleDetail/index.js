@@ -55,7 +55,9 @@ async function loadInventario (ctx, next) {
 		let inventarioArray = []
 		let keysInventario = Object.keys(allInventarioObject)
 		keysInventario.map(key => {
-			inventarioArray.push(allInventarioObject[key])
+			let invToAdd = allInventarioObject[key]
+			invToAdd.id = key
+			inventarioArray.push(invToAdd)
 		})
 
 		let articuloInventario = inventarioArray.find(inv => {
