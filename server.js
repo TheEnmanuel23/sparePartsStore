@@ -69,6 +69,14 @@ app.post('/sendemail', (req, res) => {
 	}
 })
 
+app.get('/emails', function(req, res){
+	res.render('index')
+})
+
+app.get('/emails/:id', function(req, res){
+	res.render('index')
+})
+
 app.listen(PORT, (err) => {
 	if (err) return console.log(err)
 
