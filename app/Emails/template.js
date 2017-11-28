@@ -19,10 +19,9 @@ const template = (emails) => {
     <thead>
       <tr>
         <th>#</th>
-        <th>Artículo</th>
-        <th>Tipo</th>
-        <th>Precio</th>
-        <th>Cantidad Vendida</th>
+        <th>Asunto</th>
+        <th>Nombre</th>
+        <th>Fecha</th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +35,20 @@ const template = (emails) => {
       <div class="card">
         <div class="card-content">
           <span class="card-title"><i class="material-icons">email</i> Lista de correos recibidos</span>
+          <div class="row">
+            <div class="col s12 m4 l4">
+              <select id="optionsAsuntosFilter">
+                <option value="" disabled selected>Cambiar de opción</option>
+              </select>
+              <label>Seleccionar asunto</label>
+            </div>
+            <div class="col s12 m4 l4">
+              <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaInicioCorreo">
+            </div>
+            <div class="col s12 m4 l4">
+              <a class="waves-effect waves-light btn">Filtrar</a>
+            </div>
+          </div>
           ${table}
         </div>
       </div>
