@@ -1,3 +1,5 @@
+import terminos from './terminos'
+
 const template = () => {
   if (document.Car.articles.length <= 0) {
     return '<h4 class="red-text center">El carrito está vacío</<h4>'
@@ -44,6 +46,13 @@ const template = () => {
           ${table}
         </div>
         <div class="card-action">
+          <div class="row">
+            <p>
+               <input id="terminos" type="checkbox" class="filled-in" />
+              <label for="terminos">Acepto los términos y condiciones</label>
+                <a class="waves-effect waves-light modal-trigger" href="#modal1">, Leer</a>
+            </p>
+          </div>
           <a class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar</a>
           <a id="vaciar-carrito" class="waves-effect red btn"><i class="material-icons right">remove_shopping_cart</i>Vaciar</a>          
           <div class="chip right">
@@ -52,7 +61,21 @@ const template = () => {
         </div>
       </div>
     </div>
-  </div>`
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Términos y condiciones</h4>
+      <p>
+        ${terminos}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+  </div>
+  `
 
   return card
 }

@@ -8,7 +8,8 @@ page('/shoppingcar',  () => {
   content.innerHTML = html
 
   let vaciarCarrito = document.querySelector('#vaciar-carrito')
-
+ $('.modal').modal();
+  
   if (vaciarCarrito) {
     vaciarCarrito.addEventListener('click', () => {
     	if (confirm('¿Está seguro de vaciar el carrito?') ==  true) {
