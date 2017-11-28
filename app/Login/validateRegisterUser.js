@@ -6,7 +6,9 @@ if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database().ref('usuarios')
 
-const validateRegisterUser = (user) => {	
+const validateRegisterUser = (user) => {
+	window.currentUserId = user.uid
+	
 	db.child(user.uid).once('value').then(snapshot => {
 		let data = snapshot.val()
 		
@@ -14,6 +16,7 @@ const validateRegisterUser = (user) => {
 			if (data.isAdmin) {
 				addAdminMenu()
 			}
+
 			window.isAdmin = data.isAdmin
 		} else {
 			let today = new Date()
@@ -23,7 +26,7 @@ const validateRegisterUser = (user) => {
 				isAdmin: false
 			}
 
-			db.child(user.uid).set(newUser)			
+			db.child(user.uid).set(newUser)
 			window.isAdmin = false
 		}
 	})

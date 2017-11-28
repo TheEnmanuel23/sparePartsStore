@@ -53,7 +53,7 @@ const template = () => {
                 <a class="waves-effect waves-light modal-trigger" href="#modal1">, Leer</a>
             </p>
           </div>
-          <a class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar</a>
+          <a id="comprar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar</a>
           <a id="vaciar-carrito" class="waves-effect red btn"><i class="material-icons right">remove_shopping_cart</i>Vaciar</a>          
           <div class="chip right">
             Total: ${total}$

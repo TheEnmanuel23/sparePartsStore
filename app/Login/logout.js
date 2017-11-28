@@ -27,6 +27,7 @@ function signOut () {
       	removeAdminMenu()
       }
       document.Car.articles = []
+      window.currentUserId = null
 
 		}).catch(function(error) {
 		console.log(err.message)
