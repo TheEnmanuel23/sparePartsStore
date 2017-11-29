@@ -24,7 +24,8 @@ const validateRegisterUser = (user) => {
 			let newUser = {
 				email: user.email,
 				lastAccess: `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`,
-				isAdmin: false
+				isAdmin: false,
+				displayName: user.displayName
 			}
 
 			db.child(user.uid).set(newUser)
