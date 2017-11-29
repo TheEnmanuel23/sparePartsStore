@@ -77,6 +77,15 @@ app.get('/emails/:id', function(req, res){
 	res.render('index')
 })
 
+app.get('/miscompras', function(req, res){
+	res.render('index')
+})
+
+app.get('/miscompras/:id', function(req, res){
+	res.render('index')
+})
+
+
 app.listen(PORT, (err) => {
 	if (err) return console.log(err)
 
