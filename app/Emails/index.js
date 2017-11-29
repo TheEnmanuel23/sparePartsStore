@@ -41,7 +41,7 @@ function loadSubjectsDropdown (asuntos) {
 	options += '<option value="td" selected>Todo</option>'
 	let optionsAsuntos = document.querySelector('#optionsAsuntosFilter')
 	optionsAsuntos.innerHTML = options
-	$('#optionsAsuntosFilter').material_select();
+	$('#optionsAsuntosFilter').material_select()
 }
 
 function loadAsuntos (ctx, next) {

@@ -32,7 +32,7 @@ const template = (emails) => {
     <div class="col s12">
       <div class="card">
         <div class="card-content">
-          <span class="card-title"><i class="material-icons">email</i> Lista de correos recibidos</span>
+          <span class="card-title"><i class="material-icons">email</i> Bandeja de entrada</span>
           <div class="row">
             <div class="col s12 m4 l4">
               <select id="optionsAsuntosFilter">

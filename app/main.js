@@ -18,6 +18,7 @@ import './Top'
 import './Login'
 import './Contacto'
 import './Emails'
+import './EmailDetail'
 import './main.css'
 
 document.Car = new Car()

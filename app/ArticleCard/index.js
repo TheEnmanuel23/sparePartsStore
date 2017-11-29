@@ -31,8 +31,6 @@ let card = (article, sizeCard=4, splitSize=17) => {
 		    </div>
 		  </div>
 		</div>`
-
-
 }
 
 function splitDescription (descripcion, splitSize) {
