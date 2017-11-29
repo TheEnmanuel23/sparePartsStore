@@ -1,11 +1,13 @@
 const articulosTemplate = (articulos) => {
   let rows = ''
   let total = 0
+  let rowCount = 1
 
 	articulos.map(item => {
     let totalRow = item.cantidad * item.precio_venta
     rows +=  `
      <tr>
+      <td>${rowCount}</td>
       <td>${item.descripcion}</td>
       <td>${item.precio_venta}$</td>
       <td>${item.cantidad}</td>
@@ -13,12 +15,14 @@ const articulosTemplate = (articulos) => {
     </tr>
     `
     total += totalRow
+    rowCount++
   })
 
   let table = `
   <table class="striped">
     <thead>
       <tr>
+        <th>#</th>
         <th>Artículo</th>
         <th>Precio</th>
         <th>Cantidad</th>

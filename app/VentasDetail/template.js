@@ -39,10 +39,13 @@ const template = (factura) => {
 	        			  <strong>Correo:</strong>
 	          			<span>${factura.usuario.email}</span>
 	        			</div>
+	        			<div class="row">
+	        			  <a id="descargarDetalleFactura" class="waves-effect waves-light btn"><i class="material-icons">file_download</i> Descargar</a>
+	        			</div>
 	        		</div>
 	        	</div>
 	        	${articulosTemplate(factura.articulos)}
-	        </div>
+	        </div> 
 	      </div>
 	    </div>
     </div>
