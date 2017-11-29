@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import config from '../../config'
 import { addAdminMenu } from './adminMenu'
+import menuUserAccount from './menuUserWithAccount' 
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -29,6 +30,8 @@ const validateRegisterUser = (user) => {
 			db.child(user.uid).set(newUser)
 			window.isAdmin = false
 		}
+
+		menuUserAccount()
 	})
 }
 
