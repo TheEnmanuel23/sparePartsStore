@@ -1,3 +1,5 @@
+import articulosTemplate from './articulosTemplate'
+
 const template = (factura) => {
 	let html = `
  <div class="row">
@@ -21,7 +23,7 @@ const template = (factura) => {
 	        		<div class="col s12 m6 l6">	        		
 	        			<div class="row">
 	        			  <strong>Total:</strong>
-	          			<span>${factura.total}</span>
+	          			<span>${factura.total}$</span>
 	        			</div>
 	        			<div class="row">
 	        			  <strong>Cantidad de artículos:</strong>
@@ -29,6 +31,7 @@ const template = (factura) => {
 	        			</div>
 	        		</div>
 	        	</div>
+	        	${articulosTemplate(factura.articulos)}
 	        </div>
 	      </div>
 	    </div>
