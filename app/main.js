@@ -20,6 +20,7 @@ import './Contacto'
 import './Emails'
 import './EmailDetail'
 import './MisCompras'
+import './MisComprasDetail'
 import './main.css'
 
 document.Car = new Car()
