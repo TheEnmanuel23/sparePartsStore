@@ -8,8 +8,28 @@ if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
 
-page('/miscompras', PreLoading, (ctx, next) => {
-	let html = template()
+page('/miscompras', PreLoading, loadFacturas, (ctx, next) => {
+	let html = template(ctx.facturas)
   let content = document.querySelector('#content')
   content.innerHTML = html
 })
+
+function loadFacturas (ctx, next)  {
+	db.ref('usuarioCompras').once('value').then(snapshot => {
+		let store = snapshot.val()
+		let keys = Object.keys(store)
+
+		let facturas = []
+
+		keys.map(key => {
+			let factura = store[key]
+			factura.id = key
+			facturas.push(factura)
+		})
+
+		let facturasPorUsuario = facturas.filter(item => item.usuario == window.currentUserId)
+
+		ctx.facturas = facturasPorUsuario
+		next()
+	})
+}

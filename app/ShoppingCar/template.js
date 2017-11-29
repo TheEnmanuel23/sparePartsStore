@@ -57,7 +57,7 @@ const template = () => {
           <a id="comprar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar</a>
           <a id="vaciar-carrito" class="waves-effect red btn"><i class="material-icons right">remove_shopping_cart</i>Vaciar</a>          
           <div class="chip right">
-            Total: ${total}$
+            Total: <span id="totalCompra">${total}</span>$
           </div>
         </div>
       </div>
