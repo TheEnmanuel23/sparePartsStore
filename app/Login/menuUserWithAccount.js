@@ -1,6 +1,6 @@
 const newMenu = `  <li><a href="/miscompras">Mis compras</a></li>`
 
-const menuUserAccount = () => {
+const addMenuUserAccount = () => {
 	let div = document.createElement('div')
 	div.setAttribute('id', 'userAccountMenu')
 	div.innerHTML = newMenu
@@ -9,4 +9,11 @@ const menuUserAccount = () => {
 	mainMenu.appendChild(div)
 }
 
-export default menuUserAccount
+const removemenuUserAccount= () => {
+	let adminMenu = document.querySelector('#userAccountMenu')
+
+	let mainMenu = document.querySelector('#mainMenu')
+	mainMenu.removeChild(adminMenu)
+}
+
+export { addMenuUserAccount, removemenuUserAccount }

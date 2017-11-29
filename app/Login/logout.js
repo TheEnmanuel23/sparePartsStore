@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import { removeAdminMenu } from './adminMenu'
+import { removemenuUserAccount } from './menuUserWithAccount' 
 import page from 'page'
 
 const logout = () => {
@@ -26,9 +27,11 @@ function signOut () {
       if (window.isAdmin) {
       	removeAdminMenu()
       }
+
+      removemenuUserAccount()
       document.Car.articles = []
       window.currentUserId = null
-
+      page.redirect('/')
 		}).catch(function(error) {
 		console.log(err.message)
 	})
