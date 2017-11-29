@@ -12,9 +12,9 @@ const generatePdf = (factura) => {
 }
 
 function generateHeader (factura, doc) {
-	var columns = ["N° Factura", "Fecha", "Total", "Cantidad material", "Cliente"]
+	var columns = ["N° Factura", "Fecha", "Total", "Cantidad material"]
 	var rows = []
-	var row = [factura.id, factura.fecha, factura.total, factura.articulos.length, factura.usuario.displayName]
+	var row = [factura.id, factura.fecha, factura.total, factura.articulos.length]
 	rows.push(row)
 
 	doc.autoTable(columns, rows, {

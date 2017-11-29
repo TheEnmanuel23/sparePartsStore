@@ -29,6 +29,9 @@ const template = (factura) => {
 	        			  <strong>Cantidad de artículos:</strong>
 	          			<span>${factura.articulos.length}</span>
 	        			</div>
+	        			<div class="row">
+	        			  <a id="descargarDetalleFacturaUser" class="waves-effect waves-light btn"><i class="material-icons">file_download</i> Descargar</a>
+	        			</div>
 	        		</div>
 	        	</div>
 	        	${articulosTemplate(factura.articulos)}

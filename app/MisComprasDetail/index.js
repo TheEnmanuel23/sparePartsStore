@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import config from '../../config'
 import template from './template'
 import PreLoading from '../Loader'
+import generatePdf from './generatePdfDetalleCompra'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -13,6 +14,9 @@ page('/miscompras/:id', PreLoading, loadFactura, (ctx, next) => {
 
   let html = template(ctx.factura)
   content.innerHTML = html
+
+  let descargarDetalleFacturaUser = document.querySelector('#descargarDetalleFacturaUser')
+  descargarDetalleFacturaUser.addEventListener('click', () => generatePdf(ctx.factura))
 })
 
 function loadFactura (ctx, next) {
