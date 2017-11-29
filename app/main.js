@@ -21,6 +21,7 @@ import './Emails'
 import './EmailDetail'
 import './MisCompras'
 import './MisComprasDetail'
+import './Ventas'
 import './main.css'
 
 document.Car = new Car()

@@ -85,6 +85,13 @@ app.get('/miscompras/:id', function(req, res){
 	res.render('index')
 })
 
+app.get('/ventas', function(req, res){
+	res.render('index')
+})
+
+app.get('/ventas/:id', function(req, res){
+	res.render('index')
+})
 
 app.listen(PORT, (err) => {
 	if (err) return console.log(err)
