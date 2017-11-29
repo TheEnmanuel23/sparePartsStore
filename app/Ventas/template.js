@@ -10,6 +10,7 @@ const template = (facturas) => {
       <td>${item.fecha}</td>
       <td>${item.total}$</td>
       <td>${item.articulos.length}</td>
+      <td>${item.usuario.displayName}</td>
     </tr>
     `
   })
@@ -23,6 +24,7 @@ const template = (facturas) => {
         <th>Fecha</th>
         <th>Total</th>
         <th>Cantidad de material</th>
+        <th>Cliente</th>
       </tr>
     </thead>
     <tbody id="bodyVentas">
@@ -56,7 +58,8 @@ const template = (facturas) => {
                   <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaVenta">
                 </div>
                 <div class="row">
-                   <a id="filtrarVentas" class="waves-effect waves-light btn">Filtrar</a>
+                   <a id="filtrarVentas" class="waves-effect waves-light btn">Filtrar</a>                   
+                   <a id="descargarVentas" class="waves-effect waves-light btn"><i class="material-icons">file_download</i> Descargar</a>
                 </div>
               </div>
           </div>

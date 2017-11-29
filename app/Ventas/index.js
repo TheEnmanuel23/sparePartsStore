@@ -4,12 +4,16 @@ import config from '../../config'
 import template from './template'
 import PreLoading from '../Loader'
 import currentDate from '../getCurrentDate'
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
 const db = firebase.database()
+var usuariosArray = []
+var facturaCurrentShowing = []
 
-page('/ventas', PreLoading, loadFacturas, (ctx, next) => {
+page('/ventas', PreLoading, loadUsuarios, loadFacturas, (ctx, next) => {
 	let html = template(ctx.facturas)
   let content = document.querySelector('#content')
   content.innerHTML = html
@@ -24,8 +28,28 @@ page('/ventas', PreLoading, loadFacturas, (ctx, next) => {
   })
 
   let btnFiltrarVentas= document.querySelector('#filtrarVentas')
+  let btndescargarVentas= document.querySelector('#descargarVentas')
   btnFiltrarVentas.addEventListener('click', filtrarVentasEvent)
+  btndescargarVentas.addEventListener('click', generatePdf)
 })
+
+function loadUsuarios (ctx, next) {
+	db.ref('usuarios').once('value').then(snapshot => {
+	  let store = snapshot.val()
+	  let keys = Object.keys(store)
+
+	  let usuarios = []
+
+	  keys.map(key => {
+	  	let usuario = store[key]
+	  	usuario.id = key
+	  	usuarios.push(usuario)
+	  })
+	  ctx.usuarios = usuarios
+	  usuariosArray = usuarios
+    next()
+	})
+}
 
 function loadFacturas (ctx, next)  {
 	db.ref('usuarioCompras').once('value').then(snapshot => {
@@ -37,10 +61,12 @@ function loadFacturas (ctx, next)  {
 		keys.map(key => {
 			let factura = store[key]
 			factura.id = key
+			factura.usuario = ctx.usuarios.find(item => item.id == factura.usuario)
 			facturas.push(factura)
 		})
 
 		ctx.facturas = facturas
+		facturaCurrentShowing = facturas
 		next()
 	})
 }
@@ -101,6 +127,9 @@ function filtrarVentas (cantidadInicial = 0, cantidadFinal = 0, selectedDate = n
 			facturasFiltered = facturasFiltered.filter(item => item.fecha == currentDate(new Date(selectedDate)))
 		}
 
+		facturasFiltered.map(item => item.usuario = usuariosArray.find(us => us.id == item.usuario))		
+		facturaCurrentShowing = facturasFiltered
+
 		let bodyVentas = document.querySelector('#bodyVentas')
   	bodyVentas.innerHTML = rowFiltered(facturasFiltered)
 	})
@@ -118,9 +147,31 @@ function rowFiltered (facturas) {
       <td>${item.fecha}</td>
       <td>${item.total}$</td>
       <td>${item.articulos.length}</td>
+      <td>${item.usuario.displayName}</td>
     </tr>
     `
 	})
 
  	return rows
+}
+
+function generatePdf () {
+	var columns = ['#', "Factura", "Fecha", "Total", "Cantidad_Material", "Cliente"]
+	var rows = []
+
+	if (facturaCurrentShowing.length > 0) {
+		let rowNum = 1
+		facturaCurrentShowing.map(fact => {
+			let row = [rowNum, fact.id, fact.fecha, fact.total, fact.articulos.length, fact.usuario.displayName]
+
+			rowNum++
+			rows.push(row)
+		})
+
+		var doc = new jsPDF('p', 'pt')
+		doc.autoTable(columns, rows)
+		doc.save('facturas.pdf')
+	} else {
+		alert('No hay datos para descargar.')
+	}
 }
