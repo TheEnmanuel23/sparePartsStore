@@ -4,7 +4,7 @@ const template = (facturas) => {
 
 	facturas.map(item => {
     rows +=  `
-     <tr id=${item.id}>
+     <tr>
       <td>${countRow++}</td>
       <td><a href="/ventas/${item.id}">${item.id}</a></td>
       <td>${item.fecha}</td>
@@ -25,7 +25,7 @@ const template = (facturas) => {
         <th>Cantidad de material</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="bodyVentas">
      ${rows}
     </tbody>
   </table>`
@@ -35,7 +35,31 @@ const template = (facturas) => {
     <div class="col s12">
       <div class="card">
         <div class="card-content">
-          <span class="card-title"><i class="material-icons">shopping_basket</i> Ventas realizadas</span>
+          <span class="card-title"><i class="material-icons">shopping_basket</i> Ventas realizadas</span>          
+            <div class="row">
+              <div class="col s12 m6 l6">
+                <div class="row">
+                  <div class="input-field">
+                    <input id="cantidadInicial" type="number" min=1 class="validate">
+                    <label for="cantidadInicial">Total 1</label>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="input-field">
+                    <input id="cantidadFinal" type="number" min=1 class="validate">
+                    <label for="cantidadFinal">Total 2</label>
+                  </div>
+               </div>
+              </div>
+              <div class="col s12 m6 l6">
+                <div class="row">
+                  <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaVenta">
+                </div>
+                <div class="row">
+                   <a id="filtrarVentas" class="waves-effect waves-light btn">Filtrar</a>
+                </div>
+              </div>
+          </div>
           ${table}
         </div>
       </div>
