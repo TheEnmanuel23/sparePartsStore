@@ -40,7 +40,12 @@ const template = (emails) => {
               </select>
             </div>
             <div class="col s12 m4 l4">
-              <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaCorreo">
+              <div class="row">
+                <input type="text" placeholder="Fecha inicial" class="datepicker" id="filtroFechaInicialCorreo">
+              </div>
+              <div class="row">
+                <input type="text" placeholder="Fecha final" class="datepicker" id="filtroFechaFinalCorreo">
+              </div>
             </div>
             <div class="col s12 m4 l4">
               <a id="filtrarCorreos" class="waves-effect waves-light btn">Filtrar</a>

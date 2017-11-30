@@ -4,6 +4,10 @@ import config from '../../config'
 import template from './template'
 import PreLoading from '../Loader'
 import currentDate from '../getCurrentDate'
+import Moment from 'moment'
+import { extendMoment } from 'moment-range'
+
+const moment = extendMoment(Moment)
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -18,7 +22,16 @@ page('/emails', PreLoading, loadAsuntos, loadEmails, (ctx, next) => {
 
   loadSubjectsDropdown(ctx.asuntos)
 
-  $('#filtroFechaCorreo').pickadate({
+  $('#filtroFechaInicialCorreo').pickadate({
+    selectMonths: true,
+    selectYears: 15,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false
+  })
+
+  $('#filtroFechaFinalCorreo').pickadate({
     selectMonths: true,
     selectYears: 15,
     today: 'Today',
@@ -75,7 +88,8 @@ function loadEmails (ctx, next) {
 function filterEmailsEvent () {
 	let optionsAsuntos = document.querySelector('#optionsAsuntosFilter')
 	let subjectSelected = optionsAsuntos.options[optionsAsuntos.selectedIndex].value
-	let selectedDate = document.querySelector('#filtroFechaCorreo').value
+	let selectedDateInicial = document.querySelector('#filtroFechaInicialCorreo').value
+	let selectedDateFinal = document.querySelector('#filtroFechaFinalCorreo').value
 
 	let loading = `
 	  <div class="preloader-wrapper big active">
@@ -93,10 +107,10 @@ function filterEmailsEvent () {
   let bodyEmails = document.querySelector('#bodyEmails')
   bodyEmails.innerHTML = loading
 
-	filteringData(subjectSelected, selectedDate)
+	filteringData(subjectSelected, selectedDateInicial, selectedDateFinal)
 }
 
-function filteringData (subjectSelected, selectedDate) {
+function filteringData (subjectSelected, selectedDateInicial, selectedDateFinal) {
 	firebase.database().ref('correosEnviados').once('value').then(snapshot => {
 		let store = snapshot.val()
 		let keys = Object.keys(store)
@@ -112,15 +126,14 @@ function filteringData (subjectSelected, selectedDate) {
 		let arrayFiltered = []
 
 		// verificando los filtros seleccioandos
-		if (selectedDate && subjectSelected != 'td') {
-			arrayFiltered = emails.filter(item => item.date == currentDate(new Date(selectedDate)))
+		if (selectedDateInicial && selectedDateFinal && subjectSelected != 'td') {
+			arrayFiltered = emails.filter(item => item.date == currentDate(new Date(selectedDateInicial)))
 			arrayFiltered = arrayFiltered.filter(item => item.subject == subjectSelected)
 		}
-		else if (selectedDate) {
+		else if (selectedDateInicial || selectedDateFinal) {
 			arrayFiltered = subjectSelected != 'td' ? emails.filter(item => item.subject == subjectSelected) : emails
-			arrayFiltered = arrayFiltered.filter(item => item.date == currentDate(new Date(selectedDate)))
-		}
-		else {
+			arrayFiltered = getDataFilteredByDate(selectedDateInicial, selectedDateFinal, arrayFiltered)
+		} else {
 			arrayFiltered = subjectSelected != 'td' ? emails.filter(item => item.subject == subjectSelected) : emails
 		}
 
@@ -149,4 +162,37 @@ function rowFiltered (emails) {
   })
 
   return rows
+}
+
+
+function getDataFilteredByDate (dateStart, dateEnd, arrayFiltered) {
+	if (dateStart && dateEnd) {
+		let fechaInicio = new Date(dateStart)
+		let fechaFinal = new Date(dateEnd)
+
+		arrayFiltered = arrayFiltered.filter(item => {
+			let fechaFormated = moment(item.date, 'DD/MM/YYYY').toDate()
+			let rango = moment.range(fechaInicio, fechaFinal)
+			return rango.contains(fechaFormated)
+		})
+
+	} else if (dateStart) {
+		let fechaInicio = new Date(dateStart)
+
+		arrayFiltered = arrayFiltered.filter(item => {
+				let fechaFormated = moment(item.date, 'DD/MM/YYYY').toDate()
+				let rango = moment.range(fechaInicio, null)
+				return rango.contains(fechaFormated)
+			}) 
+		} else if (dateEnd) {
+			let fechaFinal = new Date(dateEnd)
+			
+			arrayFiltered = arrayFiltered.filter(item => {
+				let fechaFormated = moment(item.date, 'DD/MM/YYYY').toDate()
+				let rango = moment.range(null, fechaFinal)
+				return rango.contains(fechaFormated)
+			}) 
+		}
+
+	return arrayFiltered
 }
