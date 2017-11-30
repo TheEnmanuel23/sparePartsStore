@@ -1,4 +1,6 @@
 import terminos from './terminos'
+import mastercardyvisa from './mastercardyvisa.jpg'
+import cvc2 from './cvc2.jpg'
 
 const template = () => {
   if (document.Car.articles.length <= 0) {
@@ -47,6 +49,13 @@ const template = () => {
           ${table}
         </div>
         <div class="card-action">
+          <div class="row">
+            <p>
+              <input id="terminos" type="checkbox" class="filled-in" />
+              <label for="terminos">Acepto los términos y condiciones</label>
+              <a class="waves-effect waves-light modal-trigger" href="#modal1">, Leer</a>
+            </p>         
+          </div>
           <a id="listoCar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Listo</a>
           <a id="vaciar-carrito" class="waves-effect red btn"><i class="material-icons right">remove_shopping_cart</i>Vaciar</a>          
           <div class="chip right">
@@ -57,17 +66,61 @@ const template = () => {
     </div>
   </div>
 
-    <!-- Modal para comprar -->
-  <div id="modalComprar" class="modal">
+   <!-- Modal para comprar -->
+  <div id="modalComprar" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Realizando compra ...</h4>
       <div class="row">
-        <p>
-          <input id="terminos" type="checkbox" class="filled-in" />
-          <label for="terminos">Acepto los términos y condiciones</label>
-          <a class="waves-effect waves-light modal-trigger" href="#modal1">, Leer</a>
-        </p>
-         
+        <p>Tarjetas</p>
+        <img id="tarjetas" src=${mastercardyvisa} style="height: 50px;"/>
+      </div>
+      <hr/>
+      <p>Datos de tarjeta</p>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="direccionEnvio" type="text" class="validate">
+          <label for="direccionEnvio">Dirección de envío</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <input placeholder="Como aparece en la tarjeta" id="nombreTitular" type="text" class="validate">
+            <label for="nombreTitular">Nombre del titular</label>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <input id="numeroTarjeta" type="text" class="validate">
+            <label for="numeroTarjeta">Número de tarjeta</label>
+          </div>
+        </div>
+        <div class="row">
+          <p>Fecha de expiración</p>
+          <div class="row">
+            <div class="col s6 m6 l6">
+              <div class="row">
+                <div class="input-field  col s6 m6 l6">
+                  <input id="mesExpiracion" type="text" class="validate">
+                  <label for="mesExpiracion">Mes</label>
+                </div>
+                <div class="input-field col s6 m6 l6">                  
+                  <input id="AnioExpiracion" type="text" class="validate">
+                  <label for="AnioExpiracion">Año</label>
+                </div>
+              </div>
+            </div>
+            <div class="col s6 m6 l6">
+              <div class="row">
+                <div class="input-field col s8 m8 l8">
+                  <input id="codigoSeguridad" placeholder="3 dígitos" type="text" class="validate">
+                  <label for="codigoSeguridad">Código de seguridad</label>
+                </div>
+                <div class="col s4 m4 l4">
+                  <img  class="materialboxed" data-caption="Dígitos de seguridad" src=${cvc2} style="height: 50px;" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
@@ -77,7 +130,7 @@ const template = () => {
   </div>
 
   <!-- Modal para terminos y condiciones -->
-  <div id="modal1" class="modal">
+  <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Términos y condiciones</h4>
       <p>

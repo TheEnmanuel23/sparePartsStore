@@ -14,7 +14,9 @@ page('/shoppingcar',  () => {
 
  $('.modal').modal()
  $('#modalComprar').modal()
-
+ $('.materialboxed').materialbox()
+ Materialize.updateTextFields()
+ 
   let vaciarCarrito = document.querySelector('#vaciar-carrito')
   let btnListoCar  = document.querySelector('#listoCar')
   let btnComprar  = document.querySelector('#comprar')
@@ -28,7 +30,7 @@ page('/shoppingcar',  () => {
     })
 
     btnListoCar.addEventListener('click', () => {
-      if (!window.currentUserId) return alert('Inicie sesión para realizar la compra.')
+      // if (!window.currentUserId) return alert('Inicie sesión para realizar la compra.')
        $('#modalComprar').modal('open')
     })
 
