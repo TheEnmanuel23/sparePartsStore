@@ -30,7 +30,7 @@ page('/shoppingcar',  () => {
     })
 
     btnListoCar.addEventListener('click', () => {
-      if (!window.currentUserId) return alert('Inicie sesión para realizar la compra.')
+      // if (!window.currentUserId) return alert('Inicie sesión para realizar la compra.')
        $('#modalComprar').modal('open')
     })
 
