@@ -39,7 +39,7 @@ const template = (facturas) => {
         <div class="card-content">
           <span class="card-title"><i class="material-icons">shopping_basket</i> Ventas realizadas</span>          
             <div class="row">
-              <div class="col s12 m6 l6">
+              <div class="col s12 m4 l4">
                 <div class="row">
                   <div class="input-field">
                     <input id="cantidadInicial" type="number" min=1 class="validate">
@@ -53,12 +53,19 @@ const template = (facturas) => {
                   </div>
                </div>
               </div>
-              <div class="col s12 m6 l6">
+              <div class="col s12 m4 l4">
                 <div class="row">
-                  <input type="text" placeholder="Fecha" class="datepicker" id="filtroFechaVenta">
+                  <input type="text" placeholder="Fecha inicial" class="datepicker" id="filtroFechaInicioVenta">
                 </div>
                 <div class="row">
-                   <a id="filtrarVentas" class="waves-effect waves-light btn">Filtrar</a>                   
+                  <input type="text" placeholder="Fecha final" class="datepicker" id="filtroFechaFinalVenta">
+                </div>
+              </div>
+              <div class="col s12 m4 l4">
+                <div class="row">
+                   <a id="filtrarVentas" class="waves-effect waves-light btn">Filtrar</a>
+                </div>
+                <div class="row">              
                    <a id="descargarVentas" class="waves-effect waves-light btn"><i class="material-icons">file_download</i> Descargar</a>
                 </div>
               </div>

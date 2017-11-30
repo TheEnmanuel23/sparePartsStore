@@ -5,6 +5,10 @@ import template from './template'
 import PreLoading from '../Loader'
 import currentDate from '../getCurrentDate'
 import generatePdf from './generatePdfVentas'
+import Moment from 'moment'
+import { extendMoment } from 'moment-range'
+
+const moment = extendMoment(Moment)
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -17,7 +21,16 @@ page('/ventas', PreLoading, loadUsuarios, loadFacturas, (ctx, next) => {
   let content = document.querySelector('#content')
   content.innerHTML = html
 
-  $('#filtroFechaVenta').pickadate({
+  $('#filtroFechaInicioVenta').pickadate({
+    selectMonths: true,
+    selectYears: 15,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false
+  })
+
+  $('#filtroFechaFinalVenta').pickadate({
     selectMonths: true,
     selectYears: 15,
     today: 'Today',
@@ -71,7 +84,8 @@ function loadFacturas (ctx, next)  {
 }
 
 function filtrarVentasEvent () {
-	let selectedDate = document.querySelector('#filtroFechaVenta').value
+	let selectedDateInicio = document.querySelector('#filtroFechaInicioVenta').value
+	let selectedDateFinal = document.querySelector('#filtroFechaFinalVenta').value
 	let total1 = document.querySelector('#cantidadInicial').value
 	let total2 = document.querySelector('#cantidadFinal').value
 
@@ -91,10 +105,10 @@ function filtrarVentasEvent () {
   let bodyVentas = document.querySelector('#bodyVentas')
   bodyVentas.innerHTML = loading
 
-	filtrarVentas(parseInt(total1), parseInt(total2), selectedDate)
+	filtrarVentas(parseInt(total1), parseInt(total2), selectedDateInicio, selectedDateFinal)
 }
 
-function filtrarVentas (cantidadInicial = 0, cantidadFinal = 0, selectedDate = null) {
+function filtrarVentas (cantidadInicial = 0, cantidadFinal = 0, selectedDateInicio = null, selectedDateFinal = null) {
 	db.ref('usuarioCompras').once('value').then(snapshot => {
 		let store = snapshot.val()
 		let keys = Object.keys(store)
@@ -122,9 +136,7 @@ function filtrarVentas (cantidadInicial = 0, cantidadFinal = 0, selectedDate = n
 			facturasFiltered = facturas
 		}
 
-		if (selectedDate) {
-			facturasFiltered = facturasFiltered.filter(item => item.fecha == currentDate(new Date(selectedDate)))
-		}
+		facturasFiltered = getDataFilteredByDate(selectedDateInicio, selectedDateFinal, facturasFiltered)
 
 		facturasFiltered.map(item => item.usuario = usuariosArray.find(us => us.id == item.usuario))		
 		facturaCurrentShowing = facturasFiltered
@@ -156,4 +168,36 @@ function rowFiltered (facturas) {
 
 function generatePdfEvent () {
 	generatePdf(facturaCurrentShowing)
+}
+
+function getDataFilteredByDate (dateStart, dateEnd, facturasFiltered) {
+	if (dateStart && dateEnd) {
+		let fechaInicio = new Date(dateStart)
+		let fechaFinal = new Date(dateEnd)
+
+		facturasFiltered = facturasFiltered.filter(item => {
+			let fechaFormated = moment(item.fecha, 'DD/MM/YYYY').toDate()
+			let rango = moment.range(fechaInicio, fechaFinal)
+			return rango.contains(fechaFormated)
+		})
+
+	} else if (dateStart) {
+		let fechaInicio = new Date(dateStart)
+
+		facturasFiltered = facturasFiltered.filter(item => {
+				let fechaFormated = moment(item.fecha, 'DD/MM/YYYY').toDate()
+				let rango = moment.range(fechaInicio, null)
+				return rango.contains(fechaFormated)
+			}) 
+		} else if (dateEnd) {
+			let fechaFinal = new Date(dateEnd)
+			
+			facturasFiltered = facturasFiltered.filter(item => {
+				let fechaFormated = moment(item.fecha, 'DD/MM/YYYY').toDate()
+				let rango = moment.range(null, fechaFinal)
+				return rango.contains(fechaFormated)
+			}) 
+		}
+
+	return facturasFiltered
 }
