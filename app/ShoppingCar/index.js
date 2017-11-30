@@ -13,8 +13,10 @@ page('/shoppingcar',  () => {
   content.innerHTML = html
 
  $('.modal').modal()
+ $('#modalComprar').modal()
 
   let vaciarCarrito = document.querySelector('#vaciar-carrito')
+  let btnListoCar  = document.querySelector('#listoCar')
   let btnComprar  = document.querySelector('#comprar')
   
   if (vaciarCarrito || btnComprar) {
@@ -25,8 +27,12 @@ page('/shoppingcar',  () => {
     	}
     })
 
-    btnComprar.addEventListener('click', () => {
+    btnListoCar.addEventListener('click', () => {
       if (!window.currentUserId) return alert('Inicie sesión para realizar la compra.')
+       $('#modalComprar').modal('open')
+    })
+
+    btnComprar.addEventListener('click', () => {
       actualizarInventario(document.Car.articles)
       realizarCompra()
     })
@@ -61,6 +67,8 @@ function realizarCompra () {
 
   document.Car.articles = []
   alert('Compra realizada con éxito!')
+  $('#modalComprar').modal('close')
+
   page.redirect('/')
 }
 

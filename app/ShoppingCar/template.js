@@ -47,14 +47,7 @@ const template = () => {
           ${table}
         </div>
         <div class="card-action">
-          <div class="row">
-            <p>
-               <input id="terminos" type="checkbox" class="filled-in" />
-              <label for="terminos">Acepto los términos y condiciones</label>
-                <a class="waves-effect waves-light modal-trigger" href="#modal1">, Leer</a>
-            </p>
-          </div>
-          <a id="comprar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar</a>
+          <a id="listoCar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Listo</a>
           <a id="vaciar-carrito" class="waves-effect red btn"><i class="material-icons right">remove_shopping_cart</i>Vaciar</a>          
           <div class="chip right">
             Total: <span id="totalCompra">${total}</span>$
@@ -64,7 +57,26 @@ const template = () => {
     </div>
   </div>
 
-  <!-- Modal Structure -->
+    <!-- Modal para comprar -->
+  <div id="modalComprar" class="modal">
+    <div class="modal-content">
+      <h4>Realizando compra ...</h4>
+      <div class="row">
+        <p>
+          <input id="terminos" type="checkbox" class="filled-in" />
+          <label for="terminos">Acepto los términos y condiciones</label>
+          <a class="waves-effect waves-light modal-trigger" href="#modal1">, Leer</a>
+        </p>
+         
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a id="comprar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+  </div>
+
+  <!-- Modal para terminos y condiciones -->
   <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Términos y condiciones</h4>

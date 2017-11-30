@@ -17,6 +17,9 @@ const validateRegisterUser = (user) => {
 			if (data.isAdmin) {
 				addAdminMenu()
 			}
+			else {
+				addMenuUserAccount()
+			}
 
 			window.isAdmin = data.isAdmin
 		} else {
@@ -30,9 +33,9 @@ const validateRegisterUser = (user) => {
 
 			db.child(user.uid).set(newUser)
 			window.isAdmin = false
-		}
 
-		addMenuUserAccount()
+			addMenuUserAccount()
+		}
 	})
 }
 
