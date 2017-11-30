@@ -75,13 +75,13 @@ const template = () => {
         <img id="tarjetas" src=${mastercardyvisa} style="height: 50px;"/>
       </div>
       <hr/>
-      <p>Datos de tarjeta</p>
       <div class="row">
         <div class="input-field col s12">
           <input id="direccionEnvio" type="text" class="validate">
           <label for="direccionEnvio">Dirección de envío</label>
         </div>
-      </div>
+      </div>      
+      <p>Datos de tarjeta</p>
       <div class="row">
         <div class="row">
           <div class="input-field col s6 m6 l6">
@@ -99,19 +99,19 @@ const template = () => {
             <div class="col s6 m6 l6">
               <div class="row">
                 <div class="input-field  col s6 m6 l6">
-                  <input id="mesExpiracion" type="text" class="validate">
+                  <input id="mesExpiracion" type="number"  class="validate">
                   <label for="mesExpiracion">Mes</label>
                 </div>
                 <div class="input-field col s6 m6 l6">                  
-                  <input id="AnioExpiracion" type="text" class="validate">
-                  <label for="AnioExpiracion">Año</label>
+                  <input id="anioExpiracion" type="number"class="validate">
+                  <label for="anioExpiracion">Año</label>
                 </div>
               </div>
             </div>
             <div class="col s6 m6 l6">
               <div class="row">
                 <div class="input-field col s8 m8 l8">
-                  <input id="codigoSeguridad" placeholder="3 dígitos" type="text" class="validate">
+                  <input id="codigoSeguridad" placeholder="3 dígitos" type="number" class="validate">
                   <label for="codigoSeguridad">Código de seguridad</label>
                 </div>
                 <div class="col s4 m4 l4">
