@@ -124,7 +124,7 @@ const template = () => {
       </div>
     </div>
     <div class="modal-footer">
-      <a id="comprar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar</a>
+      <a id="comprar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar ahora</a>
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
     </div>
   </div>

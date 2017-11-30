@@ -18,6 +18,10 @@ const template = (factura) => {
 	        			<div class="row">
 	        			  <strong>Fecha:</strong>
 	          			<span>${factura.fecha}</span>
+	        			</div>	        			
+	        			<div class="row">
+	        			  <strong>Dirección de envío:</strong>
+	          			<span>${factura.direccionEnvio}</span>
 	        			</div>
 	        		</div>
 	        		<div class="col s12 m6 l6">	        		

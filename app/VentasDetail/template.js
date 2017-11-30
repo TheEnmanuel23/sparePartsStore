@@ -36,6 +36,10 @@ const template = (factura) => {
 	          			<span>${factura.usuario.displayName}</span>
 	        			</div>
 	        			<div class="row">
+	        			  <strong>Dirección de envio:</strong>
+	          			<span>${factura.direccionEnvio}</span>
+	        			</div>
+	        			<div class="row">
 	        			  <strong>Correo:</strong>
 	          			<span>${factura.usuario.email}</span>
 	        			</div>
