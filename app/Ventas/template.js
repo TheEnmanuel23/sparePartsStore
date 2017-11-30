@@ -43,13 +43,13 @@ const template = (facturas) => {
                 <div class="row">
                   <div class="input-field">
                     <input id="cantidadInicial" type="number" min=1 class="validate">
-                    <label for="cantidadInicial">Total 1</label>
+                    <label for="cantidadInicial">Rango 1</label>
                   </div>
                </div>
                <div class="row">
                   <div class="input-field">
                     <input id="cantidadFinal" type="number" min=1 class="validate">
-                    <label for="cantidadFinal">Total 2</label>
+                    <label for="cantidadFinal">Rango 2</label>
                   </div>
                </div>
               </div>
