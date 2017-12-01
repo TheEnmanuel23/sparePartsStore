@@ -12,6 +12,11 @@ const addEventChange = () => {
 				value = 1
 			}
 
+			if (value > articulo.inventario.stock) {
+				elementHtml.value = articulo.inventario.stock
+				value = articulo.inventario.stock
+			}
+
 			desminuirCantidad(articulo, value)
 		})
 	})
