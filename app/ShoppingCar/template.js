@@ -47,7 +47,20 @@ const template = () => {
       <div class="card">
         <div class="card-content">
           <span class="card-title"><i class="material-icons">shopping_basket</i> Lista de compras</span>
-          ${table}
+          <div class="row">
+            ${table}
+          </div>
+          <div class="row">
+            <hr>
+            <p class="right">Total de productos: <strong>${total}$</strong></p>
+            <br/>         
+            <p class="right">Total envío: <strong>2$</strong></p>
+            <br/> 
+            <hr>
+            <div class="chip right">
+              Total de su compra: <span id="totalCompra">${total + 2}</span>$
+            </div>
+          </div>
         </div>
         <div class="card-action">
           <div class="row">
@@ -58,10 +71,7 @@ const template = () => {
             </p>         
           </div>
           <a id="listoCar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Listo</a>
-          <a id="vaciar-carrito" class="waves-effect red btn"><i class="material-icons right">remove_shopping_cart</i>Vaciar</a>          
-          <div class="chip right">
-            Total: <span id="totalCompra">${total}</span>$
-          </div>
+          <a id="vaciar-carrito" class="waves-effect red btn"><i class="material-icons right">remove_shopping_cart</i>Vaciar</a>
         </div>
       </div>
     </div>
