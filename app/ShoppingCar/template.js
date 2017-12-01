@@ -20,7 +20,7 @@ const template = () => {
       <td>${item.inventario.precio_venta}$</td>
       <td>${item.cantidad}</td>
       <td>${totalRow}$</td>
-      <td><a id="del-${item.id}" class="waves-effect waves-light red btn">Eliminar</a></td>
+      <td><a id="del-${item.id}" class="waves-effect waves-light red btn"><i class="material-icons">remove_shopping_cart</i></a></td>
     </tr>
     `
     total += totalRow
