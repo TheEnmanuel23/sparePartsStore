@@ -3,6 +3,7 @@ import template from './template'
 import firebase from 'firebase'
 import config from '../../config'
 import currentDate from '../getCurrentDate'
+import addEventChange from './addEventChangeCantidad'
 
 if (!firebase.apps.length) { firebase.initializeApp(config.firebase) }
 
@@ -16,7 +17,8 @@ page('/shoppingcar',  () => {
  $('#modalComprar').modal()
  $('.materialboxed').materialbox();
  Materialize.updateTextFields();
-
+ 
+addEventChange()
 cargarMeses()
 
   let vaciarCarrito = document.querySelector('#vaciar-carrito')
