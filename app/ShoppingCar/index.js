@@ -17,6 +17,8 @@ page('/shoppingcar',  () => {
  $('.materialboxed').materialbox();
  Materialize.updateTextFields();
 
+cargarMeses()
+
   let vaciarCarrito = document.querySelector('#vaciar-carrito')
   let btnListoCar  = document.querySelector('#listoCar')
   let btnComprar  = document.querySelector('#comprar')
@@ -104,14 +106,35 @@ function addEventRemoveOfShoppingCar () {
   })
 }
 
+function cargarMeses () {
+  let optionsMesExpiracionCar = document.querySelector('#optionsMesExpiracionCar')
+  let meses = [
+   { id: 1, mes: "Enero", selected: true }, {id: 2, mes: "Febrero"}, {id:3, mes: "Marzo"}, {id: 4, mes: "Abril"},
+   { id: 5, mes: "Mayo"}, {id: 6, mes: "Junio"}, {id:7, mes: "Julio"}, {id: 8, mes: "Agosto"},
+   { id: 9, mes: "Septiembre"}, {id: 10, mes: "Octubre"}, {id:11, mes: "Noviembre"}, {id: 12, mes: "Diciembre"}
+  ]
+
+  let options = ''
+
+  meses.map(mes => {
+    options += `<option value="${mes.id}" ${ mes.selected ? 'selected' : '' }>${mes.mes}</option>`
+  })
+
+  optionsMesExpiracionCar.innerHTML = options
+
+    $('#optionsMesExpiracionCar').material_select();
+}
+
 function validateFieldsCar (){
   let direccionEnvio = document.querySelector('#direccionEnvio').value
   let nombreTitular = document.querySelector('#nombreTitular').value
   let numeroTarjeta = document.querySelector('#numeroTarjeta').value
-  let mesExpiracion = document.querySelector('#mesExpiracion').value
   let anioExpiracion = document.querySelector('#anioExpiracion').value
   let codigoSeguridad = document.querySelector('#codigoSeguridad').value
 
+  let optionsMesExpiracionCar = document.querySelector('#optionsMesExpiracionCar')
+  let mesExpiracion = optionsMesExpiracionCar.options[optionsMesExpiracionCar.selectedIndex].value
+  
   return direccionEnvio && nombreTitular && numeroTarjeta && mesExpiracion && anioExpiracion && codigoSeguridad
 }
 
@@ -119,7 +142,6 @@ function clearFieldsCar () {
   document.querySelector('#direccionEnvio').value = ''
   document.querySelector('#nombreTitular').value = ''
   document.querySelector('#numeroTarjeta').value = ''
-  document.querySelector('#mesExpiracion').value = ''
   document.querySelector('#anioExpiracion').value = ''
   document.querySelector('#codigoSeguridad').value  = ''
 }

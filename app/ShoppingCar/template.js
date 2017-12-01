@@ -100,11 +100,11 @@ const template = () => {
             <div class="col s6 m6 l6">
               <div class="row">
                 <div class="input-field  col s6 m6 l6">
-                  <input id="mesExpiracion" type="number"  class="validate">
-                  <label for="mesExpiracion">Mes</label>
+                  <select id="optionsMesExpiracionCar">
+                  </select>
                 </div>
                 <div class="input-field col s6 m6 l6">                  
-                  <input id="anioExpiracion" type="number"class="validate">
+                  <input id="anioExpiracion" type="number" class="validate">
                   <label for="anioExpiracion">Año</label>
                 </div>
               </div>
