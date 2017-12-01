@@ -1,4 +1,5 @@
 import logo from '../logo.jpg'
+import paypal from './paypal.png'
 
 const footer = `
 <div class="container">
@@ -11,6 +12,12 @@ const footer = `
 		<div class="col l4 offset-l2 s12">
 			<p>VENTA DE REPUESTOS PARA MÓBILES, SMARTPHONES, TABLETS, PC Y CONSOLAS</p>
 			<p><i>Disponemos de repuestos de pantallas, displays, carcasas, baterías, cargadores...</li></p>
+      <p>
+        <strong>Opción de pago con</strong>
+        <br>
+        <br>
+        <img style="width: 150px;" src=${paypal}/>
+      </p>
 		</div>
 	</div>
   <div class="row">
@@ -24,7 +31,7 @@ const footer = `
     <div class="col l3 s12">
       <h5 class="white-text">Servicio al cliente</h5>
       <ul>
-        <li><a class="grey-text text-lighten-3" href="#!">Contacto</a></li>
+        <li><a class="grey-text text-lighten-3" href="/contacto">Contacto</a></li>
         <li><a class="grey-text text-lighten-3" href="#!">Tarifa de compra</a></li>
       </ul>
     </div>
@@ -36,8 +43,6 @@ const footer = `
     <div class="col l3 s12">
       <h5 class="white-text">Mi cuenta</h5>
       <ul>
-        <li><a class="grey-text text-lighten-3" href="#!">Mis compras</a></li>
-        <li><a class="grey-text text-lighten-3" href="#!">Mis direcciones</a></li>
         <li><a class="grey-text text-lighten-3" href="#!">Mis datos personales</a></li>
         <li><a class="grey-text text-lighten-3" href="#!">Mis vales</a></li>
       </ul>

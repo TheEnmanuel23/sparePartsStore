@@ -1,7 +1,7 @@
 import terminos from './terminos'
 import mastercardyvisa from './mastercardyvisa.jpg'
 import cvc2 from './cvc2.jpg'
-import paypal from './paypal.png'
+import paypal from './paypalButton.png'
 
 const template = () => {
   if (document.Car.articles.length <= 0) {
@@ -136,7 +136,7 @@ const template = () => {
     </div>
     <div class="modal-footer">
       <a class="btn-flat" href="https://www.paypal.com/ni/webapps/mpp/home?gclid=EAIaIQobChMInreamq7n1wIVERuBCh0PUQl4EAAYASAAEgJhfvD_BwE&dclid=CLCYs5uu59cCFZJThgodhlEArw" >
-        <img style="width: 180px;" src=${paypal}/>
+        <img style="width: 180px;" src=${paypalButton}/>
       </a>
       <a id="comprar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar ahora</a>
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
