@@ -19,7 +19,7 @@ const template = () => {
       <td>${item.descripcion}</td>
       <td>${item.inventario.precio_venta}$</td>
       <td><input type="number" id="articulo-${item.id}" value="${item.cantidad}" max=${item.inventario.stock} min=1 style="max-width: 100px;"/></td>
-      <td id="rowTotal-${item.id}">${totalRow}$</td>
+      <td><span id="rowTotal-${item.id}">${totalRow}</span>$</td>
       <td><a id="del-${item.id}" class="waves-effect waves-light red btn"><i class="material-icons">remove_shopping_cart</i></a></td>
     </tr>
     `
@@ -54,7 +54,7 @@ const template = () => {
             <hr>
             <p class="right">Total de productos: <strong id="subtotalCompra">${total}</strong>$</p>
             <br/>         
-            <p class="right">Total envío: <strong>2$</strong></p>
+            <p class="right">Total envío: <strong>2</strong>$</p>
             <br/> 
             <hr>
             <div class="chip right">
