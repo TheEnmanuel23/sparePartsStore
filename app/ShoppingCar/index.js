@@ -32,8 +32,8 @@ cargarMeses()
     })
 
     btnListoCar.addEventListener('click', () => {
-      // if (!window.currentUserId) return alert('Inicie sesión para realizar la compra.')
-       $('#modalComprar').modal('open')
+      if (!window.currentUserId) return alert('Inicie sesión para realizar la compra.')
+      $('#modalComprar').modal('open')
     })
 
     btnComprar.addEventListener('click', () => {
