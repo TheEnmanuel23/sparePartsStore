@@ -1,7 +1,7 @@
 import terminos from './terminos'
 import mastercardyvisa from './mastercardyvisa.jpg'
 import cvc2 from './cvc2.jpg'
-import paypal from './paypalButton.png'
+import paypalButton from './paypalButton.png'
 
 const template = () => {
   if (document.Car.articles.length <= 0) {
