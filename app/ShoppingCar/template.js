@@ -135,7 +135,7 @@ const template = () => {
       </div>
     </div>
     <div class="modal-footer">
-      <a class="btn-flat" href="https://www.paypal.com/ni/webapps/mpp/home?gclid=EAIaIQobChMInreamq7n1wIVERuBCh0PUQl4EAAYASAAEgJhfvD_BwE&dclid=CLCYs5uu59cCFZJThgodhlEArw" >
+      <a class="btn-flat" target="_blank" href="https://www.paypal.com/ni/webapps/mpp/home?gclid=EAIaIQobChMInreamq7n1wIVERuBCh0PUQl4EAAYASAAEgJhfvD_BwE&dclid=CLCYs5uu59cCFZJThgodhlEArw" >
         <img style="width: 180px;" src=${paypalButton}/>
       </a>
       <a id="comprar" class="waves-effect green darken-2 btn"><i class="material-icons right">shopping_cart</i>Comprar ahora</a>

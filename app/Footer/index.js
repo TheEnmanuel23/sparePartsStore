@@ -16,7 +16,7 @@ const footer = `
         <strong>Opción de pago con</strong>
         <br>
         <br>
-        <a class="btn-flat" href="https://www.paypal.com/ni/webapps/mpp/home?gclid=EAIaIQobChMInreamq7n1wIVERuBCh0PUQl4EAAYASAAEgJhfvD_BwE&dclid=CLCYs5uu59cCFZJThgodhlEArw" >
+        <a class="btn-flat" target="_blank" href="https://www.paypal.com/ni/webapps/mpp/home?gclid=EAIaIQobChMInreamq7n1wIVERuBCh0PUQl4EAAYASAAEgJhfvD_BwE&dclid=CLCYs5uu59cCFZJThgodhlEArw" >
           <img style="width: 150px;" src=${paypal}/>
         </a>
       </p>
